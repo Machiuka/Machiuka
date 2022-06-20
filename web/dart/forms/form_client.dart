@@ -56,7 +56,7 @@ class FormClient {
       UBFClient.grupa = _grupaClient.value;
       UBFClient.numeAgent = _numeAgent.value;
 
-      ld.loadIncarcareClient('tbl_clienti', 'serverAdaugClient', 'c', client);
+      ld.loadIncarcareClient('tbl_parteneri', 'serverAdaugClient', 'c', client);
     });
     _btnAnulare.onClick.listen((e) => window.location.reload());
   }
@@ -132,7 +132,7 @@ class FormClient {
       UBFClient.grupa = _grupaClient.value;
       UBFClient.numeAgent = _numeAgent.value;
 
-      ld.loadIncarcareClient('tbl_clienti', 'serverAdaugClient', 'u', client);
+      ld.loadIncarcareClient('tbl_parteneri', 'serverAdaugClient', 'u', client);
       window.location.reload();
     });
 

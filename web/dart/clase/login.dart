@@ -34,7 +34,7 @@ class Login {
         LIElement elem = LIElement();
         lista.children.add(elem..text = _json[i]['denumire']);
         elem.onClick.listen((e) {
-          Global.codOperator = _json[i]['cod_elem'];
+          Global.codOperator = _json[i]['cod_doc'];
           Global.operator = _json[i]['denumire'];
           local.adauga('codUtilizator', Global.codOperator);
           local.adauga('utilizator', Global.operator);

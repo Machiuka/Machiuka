@@ -39,7 +39,7 @@ class LoadDetalii {
         LIElement elem = LIElement();
         lista.children.add(elem..text = _json[i]['denumire']);
         elem.onClick.listen((e) async {
-          Global.cod_elem = _json[i]['cod_elem'];
+          Global.cod_doc = _json[i]['cod_doc'];
           Global.denumire = _json[i]['denumire'];
           DetaliiElement detaliiElement = DetaliiElement();
 

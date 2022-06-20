@@ -21,16 +21,16 @@ class DetaliiElement {
 
     _textElem.innerHtml = UBFDocument.emitentDoc;
     _denumire.defaultValue = Global.denumire;
-    _cod.defaultValue = 'Cod: ' + Global.cod_elem;
+    _cod.defaultValue = 'Cod: ' + Global.cod_doc;
 
     _btnAdaug.onClick.listen((e) {
       Global.cantitate = _cantitate.value.toString();
-      Global.continut = Global.continut + Global.cod_elem + '|' + Global.cantitate + '^';
+      Global.continut = Global.continut + Global.cod_doc + '|' + Global.cantitate + '^';
       // window.alert('Continut= ${Global.continut}');
       _formElement.remove();
       CautareElement.cautareElement("RETETAR");
     });
 
-    //cod.defaultValue = _json[i]['cod_elem'];
+    //cod.defaultValue = _json[i]['cod_doc'];
   }
 }

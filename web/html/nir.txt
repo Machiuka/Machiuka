@@ -22,7 +22,7 @@
         <td width="40%" cellpadding="10">
           <div align="center"  ><h1 id="invoice-title-number">NOTA&nbsp;INTRARE&nbsp;RECEPTIE</h1></div>
           <div align="center"><h2>Nr : <label id="nr_nir"></label> &nbsp;&nbsp; din data de <span class="dataDoc1"></span></h2>
-            <div align="center"><h2>Document furnizor nr: <label id="nr_fact"></label> &nbsp;&nbsp;</h2>
+            <div align="center"><h2>Document furnizor nr: <label id="cod_doc"></label> &nbsp;&nbsp;</h2>
               </div>
             
         </td>

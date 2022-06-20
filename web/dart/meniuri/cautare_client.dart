@@ -27,7 +27,7 @@ class CautareClient {
       if (caut != null) {
         _formCautare.remove();
 
-        lc.loadClient(crud, caut, 'tbl_clienti', 'serverCautare');
+        lc.loadClient(crud, caut, 'tbl_parteneri', 'serverCautare');
 
         //echivalent cu refresh pagina
       } else {

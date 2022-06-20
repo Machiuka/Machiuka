@@ -10,7 +10,7 @@ class Invoice {
     final styleSheet = document.styleSheets![0] as CssStyleSheet;
     String rule;
 
-    if (_json['nr_fact'] == null) {
+    if (_json['cod_doc'] == null) {
       window.alert('Document Inexistent!!!');
       window.location.reload();
     } else {
@@ -47,7 +47,7 @@ class Invoice {
       SpanElement tPlata = querySelector('#tPlata') as SpanElement;
       SpanElement nrLot = querySelector('#nrLot') as SpanElement; //Nr lotului din care fac parte produsele
 
-      LabelElement nrFact = querySelector('#nr_fact') as LabelElement;
+      LabelElement nrFact = querySelector('#cod_doc') as LabelElement;
 
 //Zona Client
       LabelElement clientName = querySelector('#client_name') as LabelElement;
@@ -62,7 +62,7 @@ class Invoice {
 //*************** */
 
       final DateFormat formatareData = DateFormat('dd.M.yyyy');
-      DateTime dataF = DateTime.parse(_json['data_fact']);
+      DateTime dataF = DateTime.parse(_json['data_doc']);
       String dataFs = formatareData.format(dataF);
 
       if (tipDoc == 'fe') {
@@ -74,33 +74,33 @@ class Invoice {
       }
 
 //Incarc zona Vanzator
-      webpage.innerHtml = _json['date_vanzator']['webVanzator'];
+      webpage.innerHtml = _json['date_firma']['webVanzator'];
       if (tipDoc == 'fe') {
-        nrFact.innerHtml = UBFFactura.prefix + _json['nr_fact'].toString();
+        nrFact.innerHtml = UBFFactura.prefix + _json['cod_doc'].toString();
       } else {
-        nrFact.innerHtml = _json['nr_fact'].toString();
+        nrFact.innerHtml = _json['cod_doc'].toString();
       }
-      companyAddress.innerHtml = _json['date_vanzator']['adresaVanzator'];
-      companycif.innerHtml = _json['date_vanzator']['cifVanzator'];
-      companycui.innerHtml = _json['date_vanzator']['cuiVanzator'];
-      companytel.innerHtml = _json['date_vanzator']['telVanzator'];
-      companyemail.innerHtml = _json['date_vanzator']['emailVanzator'];
-      companytrezorerie.innerHtml = _json['date_vanzator']['contTrezVanzator'];
-      companybanca.innerHtml = _json['date_vanzator']['contVanzator'];
-      companyName.innerHtml = _json['date_vanzator']['numeVanzator'];
-      // window.alert('Nume vanzator ' + _json['date_vanzator']['numeVanzator']);
+      companyAddress.innerHtml = _json['date_firma']['adresaVanzator'];
+      companycif.innerHtml = _json['date_firma']['cifVanzator'];
+      companycui.innerHtml = _json['date_firma']['cuiVanzator'];
+      companytel.innerHtml = _json['date_firma']['telVanzator'];
+      companyemail.innerHtml = _json['date_firma']['emailVanzator'];
+      companytrezorerie.innerHtml = _json['date_firma']['contTrezVanzator'];
+      companybanca.innerHtml = _json['date_firma']['contVanzator'];
+      companyName.innerHtml = _json['date_firma']['numeVanzator'];
+      // window.alert('Nume vanzator ' + _json['date_firma']['numeVanzator']);
 
       dataDoc1.innerHtml = dataFs;
       dataDoc2.innerHtml = dataFs;
 
-      totalFact.innerHtml = cuPret == true ? _json['total_factura'] : '';
+      totalFact.innerHtml = cuPret == true ? _json['total_doc'] : '';
       double valDiscount = 0;
       double tvaDiscount = 0;
       String discount = '';
 
       if (tipDoc == 'fe') {
         totalFact.innerHtml = cuPret == true ? _json['total_fara_tva'] : '';
-        totalGeneral.innerHtml = _json['total_factura'];
+        totalGeneral.innerHtml = _json['total_doc'];
         totalTVA9.innerHtml = _json['tva_9'];
         totalTVA19.innerHtml = _json['tva_19'];
         valDiscount = double.parse(_json['val_discount']);
@@ -109,15 +109,15 @@ class Invoice {
       }
 
       //Incarc zona client
-      clientName.innerHtml = _json['date_cumparator']['denumire'];
-      clientAddress.innerHtml = _json['date_cumparator']['adresa'];
-      clientcif.innerHtml = _json['date_cumparator']['cif'];
-      delegat.innerHtml = _json['date_cumparator']['delegat'];
-      clientcui.innerHtml = _json['date_cumparator']['cui'];
-      ciDelegat.innerHtml = _json['date_cumparator']['ciNr'];
-      masina.innerHtml = _json['date_cumparator']['masina'];
-      ciPol.innerHtml = _json['date_cumparator']['ciPol'];
-      nrLot.innerHtml = _json['date_cumparator']['nrLot'];
+      clientName.innerHtml = _json['date_partener']['denumire'];
+      clientAddress.innerHtml = _json['date_partener']['adresa'];
+      clientcif.innerHtml = _json['date_partener']['cif'];
+      delegat.innerHtml = _json['date_partener']['delegat'];
+      clientcui.innerHtml = _json['date_partener']['cui'];
+      ciDelegat.innerHtml = _json['date_partener']['ciNr'];
+      masina.innerHtml = _json['date_partener']['masina'];
+      ciPol.innerHtml = _json['date_partener']['ciPol'];
+      nrLot.innerHtml = _json['date_partener']['nrLot'];
 
       //Zona tabel factura
 
@@ -128,7 +128,7 @@ class Invoice {
       int j = 0;
       Map<String, dynamic> articol;
 
-      List<dynamic> articoleFact = _json['articole_fact'];
+      List<dynamic> articoleFact = _json['continut'];
       int k;
       for (var i = 0; i < articoleFact.length; i++) {
         k = 0;
@@ -147,6 +147,7 @@ class Invoice {
         styleSheet.insertRule(rule, 0);
         k = k + 1;
         cell = row.insertCell(k);
+
         cell.text = articol['denumire'] + " (termen valabilitate:" + articol['valabilitate'] + " zile)"; // Aici introduc termen de valabilitate
         cell.id = 'denArt';
         rule = '#denArt {text-align:left;}';

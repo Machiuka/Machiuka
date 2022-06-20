@@ -27,8 +27,8 @@ class CautareCumparator {
         if (caut != null) {
           _formCautare.replaceWith(_formDetalii); //sterg formularul pentru a nu se adauga cautare peste cautare
           LoadFactura lf = LoadFactura();
-          lf.loadClient('fe', caut, 'tbl_clienti', 'serverCautare');
-          //AdaugareFactura.adaugareFactura(caut, "tbl_clienti", "serverCautare");
+          lf.loadClient('fe', caut, 'tbl_parteneri', 'serverCautare');
+          //AdaugareFactura.adaugareFactura(caut, "tbl_parteneri", "serverCautare");
         } else {
           window.location.reload(); //echivalent cu refresh pagina
         }
@@ -40,8 +40,8 @@ class CautareCumparator {
         if (caut != null) {
           _formCautare.replaceWith(_formDetalii); //sterg formularul pentru a nu se adauga cautare peste cautare
           LoadFactura lf = LoadFactura();
-          lf.loadClient('av', caut, 'tbl_clienti', 'serverCautare');
-          //AdaugareFactura.adaugareFactura(caut, "tbl_clienti", "serverCautare");
+          lf.loadClient('av', caut, 'tbl_parteneri', 'serverCautare');
+          //AdaugareFactura.adaugareFactura(caut, "tbl_parteneri", "serverCautare");
         } else {
           window.location.reload(); //echivalent cu refresh pagina
         }

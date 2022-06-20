@@ -26,7 +26,7 @@ class Global {
   static String element = ''; //este elementul rezultat din interogare server (ex materie prima de adaugat in reteta)
   static Map<String, dynamic>? js; //nefolosit
   static String denumire = '';
-  static String cod_elem = '';
+  static String cod_doc = '';
   static String cantitate = '';
   static String pret = ''; //este pretul cu TVA pentru a fi actualizat in factura, reteta, aviz
   static String articoleFactura = ''; //este un sir de tip Json

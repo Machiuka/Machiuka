@@ -30,7 +30,7 @@ class ActualizareReteta {
         LIElement elem = LIElement();
         lista.children.add(elem..text = _json[i]['denumire']);
         elem.onClick.listen((e) {
-          String crit = _json[i]['cod_elem'];
+          String crit = _json[i]['cod_doc'];
           kk.cautaPeServer(criteriu: crit, tabel: tabel, numeServer: numeServer, optiune: "u").then((value) async {
             value = value.replaceAll("[", "");
             value = value.replaceAll("]", "");
@@ -58,7 +58,7 @@ class ActualizareReteta {
 
             formDetalii.replaceWith(formUpdate);
 
-            _codElem.value = _js['cod_elem'];
+            _codElem.value = _js['cod_doc'];
             _denumire.value = _js['denumire'];
             _gramaj.value = _js['gramaj'];
             _valabilitate.value = _js['valabilitate'];

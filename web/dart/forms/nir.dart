@@ -36,7 +36,7 @@ class NIR {
 
       SpanElement totalFact = querySelector('#totalFact') as SpanElement;
       LabelElement nrNir = querySelector('#nr_nir') as LabelElement;
-      LabelElement nrFact = querySelector('#nr_fact') as LabelElement;
+      LabelElement nrFact = querySelector('#cod_doc') as LabelElement;
 
 //Zona Client
       LabelElement clientName = querySelector('#client_name') as LabelElement;
@@ -47,38 +47,38 @@ class NIR {
 //*************** */
 
       final DateFormat formatareData = DateFormat('dd.M.yyyy');
-      DateTime dataF = DateTime.parse(_json['data_fact']);
+      DateTime dataF = DateTime.parse(_json['data_doc']);
       String dataFs = formatareData.format(dataF);
 
 //Incarc zona Vanzator
-      webpage.innerHtml = _json['date_vanzator']['webVanzator'];
+      webpage.innerHtml = _json['date_firma']['webVanzator'];
       nrNir.innerHtml = _json['nr_nir'].toString();
-      nrFact.innerHtml = _json['nr_fact'].toString();
+      nrFact.innerHtml = _json['cod_doc'].toString();
 
-      companyAddress.innerHtml = _json['date_vanzator']['adresaVanzator'];
-      companycif.innerHtml = _json['date_vanzator']['cifVanzator'];
-      companycui.innerHtml = _json['date_vanzator']['cuiVanzator'];
-      companytel.innerHtml = _json['date_vanzator']['telVanzator'];
-      companyemail.innerHtml = _json['date_vanzator']['emailVanzator'];
-      companytrezorerie.innerHtml = _json['date_vanzator']['contTrezVanzator'];
-      companybanca.innerHtml = _json['date_vanzator']['contVanzator'];
-      companyName.innerHtml = _json['date_vanzator']['numeVanzator'];
-      // window.alert('Nume vanzator ' + _json['date_vanzator']['numeVanzator']);
+      companyAddress.innerHtml = _json['date_firma']['adresaVanzator'];
+      companycif.innerHtml = _json['date_firma']['cifVanzator'];
+      companycui.innerHtml = _json['date_firma']['cuiVanzator'];
+      companytel.innerHtml = _json['date_firma']['telVanzator'];
+      companyemail.innerHtml = _json['date_firma']['emailVanzator'];
+      companytrezorerie.innerHtml = _json['date_firma']['contTrezVanzator'];
+      companybanca.innerHtml = _json['date_firma']['contVanzator'];
+      companyName.innerHtml = _json['date_firma']['numeVanzator'];
+      // window.alert('Nume vanzator ' + _json['date_firma']['numeVanzator']);
 
       dataDoc1.innerHtml = dataFs;
       dataDoc2.innerHtml = dataFs;
       // totalFact.innerHtml = _json['total_fara_tva'];
-      totalFact.innerHtml = _json['total_factura'];
+      totalFact.innerHtml = _json['total_doc'];
 
       //Incarc zona client
-      clientName.innerHtml = _json['date_cumparator']['denumire'];
-      clientAddress.innerHtml = _json['date_cumparator']['adresa'];
-      clientcif.innerHtml = _json['date_cumparator']['cif'];
+      clientName.innerHtml = _json['date_partener']['denumire'];
+      clientAddress.innerHtml = _json['date_partener']['adresa'];
+      clientcif.innerHtml = _json['date_partener']['cif'];
 
-      clientcui.innerHtml = _json['date_cumparator']['cui'];
+      clientcui.innerHtml = _json['date_partener']['cui'];
 
       //Zona tabel factura
-      //Map<String, dynamic> articoleFact = _json['articole_fact'];
+      //Map<String, dynamic> articoleFact = _json['continut'];
       TableSectionElement tabel = querySelector('#tableBody') as TableSectionElement;
       TableRowElement row = TableRowElement();
       TableCellElement cell = TableCellElement();
@@ -86,7 +86,7 @@ class NIR {
       int j = 0;
       Map<String, dynamic> articol;
 
-      List<dynamic> articoleFact = _json['articole_fact'];
+      List<dynamic> articoleFact = _json['continut'];
       int k;
       for (var i = 0; i < articoleFact.length; i++) {
         k = 0;

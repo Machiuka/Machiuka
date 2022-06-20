@@ -41,7 +41,7 @@ class LoadClient {
           window.location.reload();
         } else {
           elem.onClick.listen((e) async {
-            UBFClient.codElem = int.parse(_json[i]['cod_elem']);
+            UBFClient.codElem = int.parse(_json[i]['cod_doc']);
             UBFClient.denumire = _json[i]['denumire'];
             UBFClient.adresa = _json[i]['adresa'];
             UBFClient.analitic = _json[i]['analitic'];

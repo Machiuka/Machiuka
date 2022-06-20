@@ -52,7 +52,7 @@ class LoadFactura {
           }
         }
         elem.onClick.listen((e) async {
-          UBFFactura.articol['codElem'] = _json[i]['cod_elem'];
+          UBFFactura.articol['codElem'] = _json[i]['cod_doc'];
           UBFFactura.articol['denumire'] = _json[i]['denumire'];
           UBFFactura.articol['pret'] = _json[i]['pret_vanzare'];
           UBFFactura.articol['valabilitate'] = _json[i]['valabilitate']; //termenul de valabilitate e necesar la completarea Certif de garantie
@@ -163,11 +163,11 @@ class LoadFactura {
       for (int i = 0; i < _json.length; i++) {
         LIElement elem = LIElement();
         if (tabel.contains('facturi') || tabel.contains('avize')) {
-          lista.children.add(elem..text = _json[i]['nr_fact'] + "/" + _json[i]['data_fact'] + " (" + _json[i]['date_cumparator']['denumire'] + ")");
+          lista.children.add(elem..text = _json[i]['cod_doc'] + "/" + _json[i]['data_doc'] + " (" + _json[i]['date_partener']['denumire'] + ")");
         } else {
-          lista.children.add(elem..text = _json[i]['nr_nir'] + "/" + _json[i]['data_fact'] + " (" + _json[i]['date_cumparator']['denumire'] + ")");
+          lista.children.add(elem..text = _json[i]['nr_nir'] + "/" + _json[i]['data_doc'] + " (" + _json[i]['date_partener']['denumire'] + ")");
         }
-        if (_json[i]['data_fact'] == "Nu s-au gasit rezultate") {
+        if (_json[i]['data_doc'] == "Nu s-au gasit rezultate") {
           await Future.delayed(const Duration(seconds: 1));
           _formDetalii.remove();
           if (tipDoc == 'fe') {
