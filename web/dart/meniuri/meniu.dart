@@ -14,7 +14,9 @@ class Meniu {
   static void topMeniu() async {
     LocalStorage local = LocalStorage();
     String sufix = '';
+    String activitate = '';
     sufix = local.cauta('sufix').toString();
+    activitate = local.cauta('activitate').toString();
     LoadDetalii.incarcFormular('html/top_nav.html');
     await Future.delayed(const Duration(milliseconds: 50));
 
@@ -25,9 +27,9 @@ class Meniu {
     Element _btnAdministrare = querySelector('#btnAdministrare') as Element;
     Element _btnExit = querySelector('#btnExit') as Element;
     if (sufix == "_ubf") {
-      _btnFirma.innerHtml = "UBF";
+      _btnFirma.innerHtml = "UBF" + " " + activitate;
     } else {
-      _btnFirma.innerHtml = "ATP";
+      _btnFirma.innerHtml = "ATP" + " " + activitate;
     }
     _btnLivrare.onClick.listen((e) {
       LivrareMeniu.livrareMeniu();
