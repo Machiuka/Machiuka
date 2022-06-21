@@ -30,5 +30,6 @@ class Global {
   static String cantitate = '';
   static String pret = ''; //este pretul cu TVA pentru a fi actualizat in factura, reteta, aviz
   static String articoleFactura = ''; //este un sir de tip Json
-
+  static String codActivitate = '';
+  static String denActivitate = '';
 }

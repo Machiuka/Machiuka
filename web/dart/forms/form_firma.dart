@@ -1,6 +1,7 @@
 import 'dart:html';
 import '../clase/load_detalii.dart';
 import '../clase/local_storage.dart';
+import 'form_activitati.dart';
 
 class FormFirma {
   static void formFirma() async {
@@ -22,11 +23,11 @@ class FormFirma {
     }
     _btnATP.onClick.listen((e) {
       local.adauga('sufix', '_atp');
-      window.location.reload();
+      FormActivitati.formActivitati();
     });
     _btnUBF.onClick.listen((e) {
       local.adauga('sufix', '_ubf');
-      window.location.reload();
+      FormActivitati.formActivitati();
     });
   }
 }
