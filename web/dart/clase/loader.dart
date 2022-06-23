@@ -55,9 +55,12 @@ class Loader {
       UBFClient? clientData}) async {
     numeServer = numeServer + ".php";
     Map<String, dynamic>? _obj = {"tabel": tabel};
+    _obj = null;
+    // _obj = {"tabel": tabel, "docData": docData!.toJson(), "userData": userData};
     if (tipDoc == 'rt') {
       _obj = null;
-      _obj = {"tabel": tabel, "docData": docData!.toJson(), "userData": userData};
+      _obj = {"tabel": tabel, "docData": docData!.toJson()};
+      //_obj = {"tipDoc": tipDoc, "tabel": tabel, "optiune": opt, "factData": factData!.toJson()};
     } else if (tipDoc == 'fe' || tipDoc == 'av') {
       _obj = null;
       //_obj = {"tabel": tabel, "optiune": opt, "factData": factData!.toJson()};
@@ -71,12 +74,13 @@ class Loader {
     _js = _js.replaceAll("\\", "");
     _js = _js.replaceAll('"{', '[{');
     _js = _js.replaceAll(',"}}', ']}}');
+    _js = _js.replaceAll(',",', '],'); //asta am adaugat pt adaugare reteta
 
     // window.alert(_js);
     //String _path = 'http://localhost/' + numeServer + '?x=' + _js;
     String _path = Global.url + numeServer + '?x=' + _js;
     // print(_path);
-//    window.alert(_path);
+    //window.alert(_path);
 
     // var response = await http.get(Uri.parse(path), headers: _headers);
     var response = await http.get(Uri.parse(_path));

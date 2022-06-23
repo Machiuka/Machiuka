@@ -2,7 +2,7 @@ import 'dart:html';
 import '../clase/load_detalii.dart';
 import '../clase/ubf_document.dart';
 import '../clase/global.dart';
-
+import '../clase/local_storage.dart';
 import 'package:intl/intl.dart';
 
 import 'cautare_element.dart';
@@ -12,7 +12,8 @@ class AdaugareReteta {
     //Aici adauga retete
 
     //UBFDocument document = UBFDocument();
-
+    LocalStorage local = LocalStorage();
+    String _activitate = local.cauta('activitate').toString();
     FormElement _formDetalii = querySelector("#formDetalii") as FormElement;
     LoadDetalii.incarcFormular('html/form_reteta.html');
     await Future.delayed(const Duration(milliseconds: 150));
@@ -28,12 +29,13 @@ class AdaugareReteta {
     InputElement _denumirePF = querySelector("#denumire") as InputElement;
     InputElement _valabilitate = querySelector("#valabilitate") as InputElement;
     InputElement _pretVanzare = querySelector("#pretVanzare") as InputElement;
+    InputElement _cotaTVA = querySelector("#cotaTVA") as InputElement;
     InputElement _descriere = querySelector("#descriere") as InputElement;
     InputElement _gramaj = querySelector("#gramaj") as InputElement;
     InputElement _obsDoc = querySelector("#obsDoc") as InputElement;
 
     if (titlu == "Adauga Reteta") {
-      _codPF.defaultValue = (Global.ultimNumar['nrReteta']! + 1).toString();
+      _codPF.defaultValue = (Global.ultimNumar['nrProdus']! + 1).toString();
       _denumirePF.placeholder = "Denumire Produs Finit";
       _valabilitate.placeholder = "Termen de valabilitate in zile";
     }
@@ -43,7 +45,7 @@ class AdaugareReteta {
       final DateFormat formatareData = DateFormat('yyyy-M-dd');
       final String dataDoc = formatareData.format(DateTime.now());
       UBFDocument.tipDoc = 'rt';
-      UBFDocument.cotaTVA = 9;
+      UBFDocument.cotaTVA = _cotaTVA.valueAsNumber as int?;
       UBFDocument.dataDoc = dataDoc; //preia automat data curenta
       UBFDocument.codElem = _codPF.value;
       UBFDocument.descriere = _descriere.value;
@@ -51,6 +53,7 @@ class AdaugareReteta {
       UBFDocument.valabilitate = _valabilitate.valueAsNumber as int?;
       UBFDocument.gramaj = _gramaj.valueAsNumber as int?;
       UBFDocument.obsDoc = _obsDoc.value;
+      UBFDocument.activitate = _activitate;
       UBFDocument.pretVanzare = _pretVanzare.valueAsNumber as double?;
 
       _formDocument.remove();

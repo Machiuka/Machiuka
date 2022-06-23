@@ -51,16 +51,12 @@ class CautareElement {
 
           ld.loadElement(caut!, "tbl_mp", "serverCautare");
         } else {
-          int lungime = Global.continut.length;
-          if (lungime > 1) {
-            Global.continut = Global.continut.substring(0, lungime - 1);
-
-            UBFDocument.continutDoc = Global.continut;
-          }
-          Global.continut = '';
+          /*
+              Global.continut = '';
           LoadDetalii.incarcFormular('html/form_document.html'); //Este cerut la raspuns_tabel
           await Future.delayed(const Duration(milliseconds: 50));
           //   window.alert(Global.continut);
+        */
           _formCautare.remove();
 
           ld.loadIncarcareDoc("tbl_produse", "serverAdaugReteta", "rt", UBFDocument());

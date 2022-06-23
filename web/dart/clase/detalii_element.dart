@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:html';
 import 'load_detalii.dart';
 import 'global.dart';
@@ -25,7 +26,13 @@ class DetaliiElement {
 
     _btnAdaug.onClick.listen((e) {
       Global.cantitate = _cantitate.value.toString();
-      Global.continut = Global.continut + Global.cod_doc + '|' + Global.cantitate + '^';
+      UBFDocument.articol['cantitate'] = Global.cantitate;
+      UBFDocument.articol['codElem'] = Global.cod_doc;
+      UBFDocument.articol['denumire'] = Global.denumire;
+      UBFDocument.continutDoc = UBFDocument.continutDoc + jsonEncode(UBFDocument.articol) + ',';
+
+      //Global.continut = Global.continut + Global.cod_doc + '|' + Global.cantitate + '^';
+
       // window.alert('Continut= ${Global.continut}');
       _formElement.remove();
       CautareElement.cautareElement("RETETAR");

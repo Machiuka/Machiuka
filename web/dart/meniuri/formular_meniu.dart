@@ -16,14 +16,16 @@ class FormularMeniu {
     await Future.delayed(const Duration(milliseconds: 50));
 
     Element _btnCautare = querySelector('#btnCautare') as Element;
-    // Element _btnAdaugare = querySelector('#btnAdaugare') as Element;
-    //Element _btnModificare = querySelector('#btnModificare') as Element;
-    //Element _divModificare = querySelector('#divModificare') as Element;
-    //Element _btnStergere = querySelector('#btnStergere') as Element;
+    Element _btnAdaugare = querySelector('#btnAdaugare') as Element;
+    Element _btnModificare = querySelector('#btnModificare') as Element;
+    Element _divModificare = querySelector('#divModificare') as Element;
+    Element _btnStergere = querySelector('#btnStergere') as Element;
     Element _titluH1 = querySelector('#titluDetalii') as Element;
 
     _titluH1.innerHtml = titlu;
-
+    _btnAdaugare.hidden = true;
+    _btnModificare.hidden = true;
+    _btnStergere.hidden = true;
     _btnCautare.onClick.listen((e) {
       CautareFactura.cautareFactura(titlu);
     });

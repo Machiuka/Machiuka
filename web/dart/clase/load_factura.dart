@@ -165,7 +165,16 @@ class LoadFactura {
         if (tabel.contains('facturi') || tabel.contains('avize')) {
           lista.children.add(elem..text = _json[i]['cod_doc'] + "/" + _json[i]['data_doc'] + " (" + _json[i]['date_partener']['denumire'] + ")");
         } else {
-          lista.children.add(elem..text = _json[i]['nr_nir'] + "/" + _json[i]['data_doc'] + " (" + _json[i]['date_partener']['denumire'] + ")");
+          lista.children.add(elem
+            ..text = "Aviz " +
+                _json[i]['cod_doc'] +
+                "/NIR " +
+                _json[i]['nr_nir'] +
+                "/" +
+                _json[i]['data_doc'] +
+                " (" +
+                _json[i]['date_partener']['denumire'] +
+                ")");
         }
         if (_json[i]['data_doc'] == "Nu s-au gasit rezultate") {
           await Future.delayed(const Duration(seconds: 1));

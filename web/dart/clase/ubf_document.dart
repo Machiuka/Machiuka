@@ -4,13 +4,12 @@ class UBFDocument {
   static int? idx;
   static String? dataDoc;
   static String? nrDoc;
-  static String? emitentDoc;
-  static String? destinatarDoc;
+  static String emitentDoc = '';
+  static String destinatarDoc = '';
   static String? tipDoc; //fi-factura intrare, fe - factura iesire, av - aviz expeditie, rt - reteta
-  static String? continutDoc; //aici va fi un sir
-  static String? dateEmitentDoc; //si aici la fel
+  static String dateEmitentDoc = ''; //si aici la fel
   static String? denumire;
-  static String? dateDestinatarDoc; //si aici la fel
+  static String dateDestinatarDoc = ''; //si aici la fel
   static String? obsDoc;
   static String operator = Global.operator; //doar in test am nevoie de el
   static double? pretVanzare;
@@ -21,7 +20,19 @@ class UBFDocument {
   static String? codElem;
   static int? gramaj;
   static String? linkPhoto;
+  static String? activitate;
+  //Sectiunea date
+  static Map<String, dynamic> articol = {
+    'codElem': '',
+    'denumire': '',
+    'unit_mas': 'buc',
+    'cantitate': '0',
+    'valabilitate': 0,
+    'pret': 0,
+    'valoare': 0,
+  };
 
+  static String continutDoc = ''; //Aici preia articolele in format JSON pt import ulterior in continutura din tbl_facturi
   Map toJson() => {
         'idx': idx,
         'dataDoc': dataDoc,
@@ -42,6 +53,7 @@ class UBFDocument {
         'pretVanzare': pretVanzare,
         'cotaTVA': cotaTVA,
         'linkPhoto': linkPhoto,
+        'activitate': activitate,
         'operator': operator
       };
 }

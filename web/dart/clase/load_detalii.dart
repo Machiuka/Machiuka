@@ -165,11 +165,13 @@ class LoadDetalii {
 //Incarca date pe server. Despre Useri sau Documente
     Loader loader = Loader();
     loader.adaugaPeServer(numeServer: numeServer, opt: "c", tipDoc: tipDoc, tabel: tabel, docData: docData).then((rezultat) async {
-      //await Future.delayed(const Duration(milliseconds: 50));
-      // window.alert(rezultat);
+      //window.alert(rezultat);
       try {
-        //     rezultat = rezultat.replaceAll("[", "");
-        // rezultat = rezultat.replaceAll("]", "");
+        rezultat = rezultat.replaceAll("\\", "");
+        rezultat = rezultat.replaceAll('"{', '{');
+        rezultat = rezultat.replaceAll('}"', '}');
+        //  print(rezultat);
+        //window.alert("Raspuns server: " + rezultat);
         final _json = json.decode(rezultat);
         RaspunsTabel.raspunsTabel(_json);
       } catch (e) {

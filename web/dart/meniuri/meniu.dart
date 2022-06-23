@@ -1,7 +1,7 @@
 import 'dart:html';
 import '../clase/load_detalii.dart';
 import 'administrare_meniu.dart';
-import 'rapoarte_meniu.dart';
+import 'materiale_meniu.dart';
 import 'formular_meniu.dart';
 import 'livrare_meniu.dart';
 
@@ -22,7 +22,7 @@ class Meniu {
 
     Element _btnLivrare = querySelector('#btnLivrare') as Element;
     Element _btnRetetar = querySelector('#btnRetetar') as Element;
-    Element _btnRapoarte = querySelector('#btnRapoarte') as Element;
+    Element _btnMatPrime = querySelector('#btnMatPrime') as Element;
     Element _btnFirma = querySelector('#btnFirma') as Element;
     Element _btnAdministrare = querySelector('#btnAdministrare') as Element;
     Element _btnExit = querySelector('#btnExit') as Element;
@@ -40,8 +40,8 @@ class Meniu {
       //  Global.optiune = Optiune.rd;
     });
 
-    _btnRapoarte.onClick.listen((e) {
-      RapoarteMeniu.rapoarteMeniu();
+    _btnMatPrime.onClick.listen((e) {
+      MaterialeMeniu.materialeMeniu();
     });
     _btnFirma.onClick.listen((e) {
       FormFirma.formFirma();

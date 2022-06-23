@@ -9,7 +9,7 @@ class VanzatorUBF {
   static String bancaVanzator = "Ing Bank";
   static String contTrezVanzator = " ";
   static String trezVanzator = " ";
-  static String telVanzator = "0248 511 099";
+  static String telVanzator = "0728 879 877";
   static String emailVanzator = "office@unbaiatsiofata.ro";
   static String webVanzator = "www.unbaiatsiofata.ro";
 

@@ -9,7 +9,7 @@ class VanzatorATP {
   static String bancaVanzator = "Banca Transilvania";
   static String contTrezVanzator = "RO86TREZ0475069XXX1467";
   static String trezVanzator = "Trezoreria Campulung";
-  static String telVanzator = "0248 511 099";
+  static String telVanzator = "0728 879 877";
   static String emailVanzator = "office@unbaiatsiofata.ro";
   static String webVanzator = "www.unbaiatsiofata.ro";
 

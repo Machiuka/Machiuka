@@ -20,6 +20,7 @@ class UBFFactura {
   static int termenPlata = 0;
   static int achitata = 1; //0 pt fact neachitate
   static String operator = Global.operator;
+  static String activitate = '';
 
 //Sectiunea Vanzator
 
@@ -69,6 +70,7 @@ class UBFFactura {
         'termen_plata': termenPlata,
         'achitata': achitata,
         'operator': operator,
+        'activitate': activitate,
         'continut': articoleFactura
       };
 }

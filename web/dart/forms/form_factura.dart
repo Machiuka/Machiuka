@@ -4,12 +4,13 @@ import '../clase/load_detalii.dart';
 import '../clase/ubf_factura.dart';
 import '../clase/ubf_client.dart';
 import '../clase/global.dart';
+import '../clase/local_storage.dart';
 
 class FormFactura {
   static void dateClient(String tipDoc) async {
     //tip doc poate sa fie fi, fe, av, rt. Aici putem avea fe sau av
     String formular = 'html/form_factura.html';
-
+    LocalStorage local = LocalStorage();
     LoadDetalii.incarcFormular(formular);
     await Future.delayed(const Duration(milliseconds: 50));
     FormElement _formFactura = querySelector("#formFactura") as FormElement;
@@ -27,6 +28,7 @@ class FormFactura {
     InputElement _masina = querySelector("#masina") as InputElement;
     InputElement _discount = querySelector("#discount") as InputElement;
     InputElement _tPlata = querySelector("#tPlata") as InputElement;
+    String _activitate = local.cauta('activitate').toString();
     _delegat.defaultValue = UBFClient.delegat;
     _ciDelegat.defaultValue = UBFClient.ciNr;
     _ciPol.defaultValue = UBFClient.ciPol;
@@ -48,6 +50,7 @@ class FormFactura {
 
     _btnAdauga.onClick.listen((e) {
       UBFFactura.nrFact = int.parse(_nrFact.defaultValue!);
+      UBFFactura.activitate = _activitate;
       if (tipDoc == 'fe') {
         UBFClient.discount = int.parse(_discount.value!);
         UBFClient.tPlata = int.parse(_tPlata.value!);

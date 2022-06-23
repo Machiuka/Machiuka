@@ -99,7 +99,11 @@ class InvoiceBody {
 
       dataDoc1.innerHtml = dataFs;
       dataDoc2.innerHtml = dataFs;
-      totalFact.innerHtml = cuPret == true ? _json['total_fara_tva'] : '';
+      if (tipDoc == 'fe') {
+        totalFact.innerHtml = cuPret == true ? _json['total_fara_tva'] : '';
+      } else {
+        totalFact.innerHtml = cuPret == true ? _json['total_doc'] : '';
+      }
       double valDiscount = 0;
       double tvaDiscount = 0;
       String discount = '';
@@ -304,7 +308,7 @@ class InvoiceBody {
         ctva = int.parse(_articol['ctva'].toString());
 
         pret = double.parse(_articol['pret']);
-
+        //  window.alert('Pret produs=' + pret.toString());
         if (tipD == 'fe') {
           tvaProdus = double.parse((pret * ctva / 100).toStringAsFixed(2));
 
@@ -313,9 +317,16 @@ class InvoiceBody {
           valCuTva = valFaraTva + tva;
         } else {
           tvaProdus = double.parse((pret * ctva / (100 + ctva)).toStringAsFixed(2));
+          // tvaProdus = double.parse((pret * ctva / 100).toStringAsFixed(2));
+          // valCuTva = pret * cant[i];
+          //valFaraTva = valCuTva;
           valCuTva = pret * cant[i];
-          valFaraTva = valCuTva;
           tva = tvaProdus * cant[i];
+          valFaraTva = valCuTva - tva;
+          valFaraTva = valCuTva - tva;
+          // window.alert('Tva produs=' + tvaProdus.toString() + ' cant=' + cant.toString() + ' TVA=' + tva.toString());
+          // window.alert('Valftva=' + valFaraTva.toString() + ' ValcuTva=' + valCuTva.toString());
+
         }
 
 //Incarca articole
@@ -326,9 +337,13 @@ class InvoiceBody {
         UBFFactura.articol['unit_mas'] = _articol['unit_mas'];
         UBFFactura.articol['cantitate'] = _cantitate;
         UBFFactura.articol['ctva'] = ctva.toString();
-        UBFFactura.articol['pret'] = pret.toStringAsFixed(2);
         UBFFactura.articol['tva'] = tva.toStringAsFixed(2);
-        UBFFactura.articol['valoare'] = valFaraTva.toStringAsFixed(2);
+        UBFFactura.articol['pret'] = pret.toStringAsFixed(2);
+        if (tipD == 'fe') {
+          UBFFactura.articol['valoare'] = valFaraTva.toStringAsFixed(2);
+        } else {
+          UBFFactura.articol['valoare'] = valCuTva.toStringAsFixed(2);
+        }
         UBFFactura.articoleFactura = UBFFactura.articoleFactura + jsonEncode(UBFFactura.articol) + ',';
 
 //Calculeaza totaluri
@@ -341,11 +356,11 @@ class InvoiceBody {
 
         totalFaraTva = totalFaraTva + valFaraTva;
         totalTva = totalTva + tva;
-        totalCuTva = totalFaraTva + tva;
+        totalCuTva = totalCuTva + valCuTva;
         totalTva19 = totalTva19 + tva19;
         totalTva9 = totalTva9 + tva9;
 
-        //   window.alert(totalTva.toString() + ' tva9=' + totalTva9.toString());
+        // window.alert(totalTva.toString() + ' tva9=' + totalTva9.toString());
       }
     }
     //adauga valori factura
