@@ -11,6 +11,7 @@ class Global {
   static String url = 'http://localhost/server/';
   static String? bazaDate; //tabelul de care avem nevoie
   static String operator = "xxx";
+  static int precision = 100; //ajuta la eliminarea erorilor de rotunjire
   static String codOperator = "xxx"; //A01...A04
   static String continut = ''; //continutul retetei, facturii, avizului...sub forma '102^2|
   //ultimNumar preia la inceput ultimele numere de pe server pentru fiecare categorie (factura, aviz, etc) pt a avea numere/coduri unice

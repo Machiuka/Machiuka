@@ -1,6 +1,7 @@
 import 'dart:html';
 import 'dart:convert';
 import 'load_detalii.dart';
+import 'global.dart';
 import 'ubf_factura.dart';
 import '../meniuri/cautare_element.dart';
 import 'package:intl/intl.dart';
@@ -43,8 +44,9 @@ class DetaliiFactura {
       double ctva = double.parse(_ctva.value!);
       double cantitate = double.parse(_cantitate.value!);
       double pret = double.parse(_pret.value!);
-      //double tvaProdus = pret * ctva / (100 + ctva);
-      double tvaProdus = double.parse((pret * ctva / (100 + ctva)).toStringAsFixed(2));
+
+      double tvaProdus = double.parse((pret * ctva / (100 + ctva) * Global.precision).toStringAsFixed(2));
+      tvaProdus = tvaProdus / Global.precision;
       double tva = tvaProdus * cantitate;
       double valCuTva = pret * cantitate;
       double val = valCuTva;

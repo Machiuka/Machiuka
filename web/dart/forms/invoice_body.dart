@@ -12,6 +12,7 @@ class InvoiceBody {
   //Afiseaza articolele din ultima factura pentru a fi modificate
   static void afisFactura(String tipDoc, Map<String, dynamic> _json) async {
     final styleSheet = document.styleSheets![0] as CssStyleSheet;
+
     String rule;
     int nr_art = 0;
     LocalStorage local = LocalStorage();
@@ -310,18 +311,18 @@ class InvoiceBody {
         pret = double.parse(_articol['pret']);
         //  window.alert('Pret produs=' + pret.toString());
         if (tipD == 'fe') {
-          tvaProdus = double.parse((pret * ctva / 100).toStringAsFixed(2));
+          tvaProdus = double.parse((pret * ctva / 100 * Global.precision).toStringAsFixed(2));
 
           valFaraTva = pret * cant[i];
-          tva = tvaProdus * cant[i];
+          tva = tvaProdus * cant[i] / Global.precision;
           valCuTva = valFaraTva + tva;
         } else {
-          tvaProdus = double.parse((pret * ctva / (100 + ctva)).toStringAsFixed(2));
+          tvaProdus = double.parse((pret * ctva / (100 + ctva) * Global.precision).toStringAsFixed(2));
           // tvaProdus = double.parse((pret * ctva / 100).toStringAsFixed(2));
           // valCuTva = pret * cant[i];
           //valFaraTva = valCuTva;
           valCuTva = pret * cant[i];
-          tva = tvaProdus * cant[i];
+          tva = tvaProdus * cant[i] / Global.precision;
           valFaraTva = valCuTva - tva;
           valFaraTva = valCuTva - tva;
           // window.alert('Tva produs=' + tvaProdus.toString() + ' cant=' + cant.toString() + ' TVA=' + tva.toString());
