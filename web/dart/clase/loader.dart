@@ -34,7 +34,8 @@ class Loader {
     var response = await http.get(Uri.parse(path));
     if (response.statusCode == 200) {
       String rezultat = response.body;
-      // window.alert(rezultat);
+      //window.alert(rezultat);
+      //print(rezultat);
       return rezultat;
     }
     // The GET request failed. Handle the error.
@@ -86,7 +87,8 @@ class Loader {
     var response = await http.get(Uri.parse(_path));
     if (response.statusCode == 200) {
       final jsonString = response.body;
-      // print(jsonString);
+      // window.alert(jsonString);
+      //print(jsonString);
       return jsonString;
     }
     // The GET request failed. Handle the error.

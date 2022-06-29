@@ -27,14 +27,7 @@ class LoadFactura {
     late final UListElement lista = querySelector('#listaDetalii') as UListElement;
 
     Loader kk = Loader();
-    kk
-        .cautaPeServer(
-      criteriu: caut,
-      numeServer: numeServer,
-      optiune: "r",
-      tabel: tabel,
-    )
-        .then((rezultat) async {
+    kk.cautaPeServer(criteriu: caut, numeServer: numeServer, optiune: "r", tabel: tabel).then((rezultat) async {
       //   window.alert(rezultat);
       final _json = json.decode(rezultat);
       lista.children.clear();

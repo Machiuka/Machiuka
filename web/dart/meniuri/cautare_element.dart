@@ -89,6 +89,16 @@ class CautareElement {
             UBFFactura.tva = UBFFactura.tva - UBFFactura.tvaDiscount;
             UBFFactura.totalFactura = UBFFactura.totalFactFaraTva + UBFFactura.tva;
           }
+          //   window.alert("Factura fara tva=" + UBFFactura.totalFactFaraTva.toString());
+//Rotunjeste totalul facturii, adica scapa de zecimalele in plus
+          double _zecimale = (UBFFactura.totalFactura - UBFFactura.totalFactura.round()).abs();
+          if (_zecimale < Global.zecimale) {
+            //      window.alert("Zecimale=" + _zecimale.toString());
+            UBFFactura.totalFactura = UBFFactura.totalFactura - _zecimale;
+            //   window.alert("Total Factura zecimale incluse =" + UBFFactura.totalFactura.toString());
+            UBFFactura.totalFactFaraTva = UBFFactura.totalFactFaraTva - _zecimale;
+            // window.alert("Zecimale Fact fara tva=" + UBFFactura.totalFactFaraTva.toString());
+          }
 
           // window.alert(Global.operatie.toString());
           _formCautare.remove();

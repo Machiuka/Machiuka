@@ -373,5 +373,13 @@ class InvoiceBody {
     UBFFactura.tva = totalTva9 + totalTva19;
     UBFFactura.totalFactura = totalCuTva;
     UBFFactura.discount = discount;
+    //Rotunjeste totalul facturii, adica scapa de zecimalele in plus
+
+    double _zecimale = (UBFFactura.totalFactura - UBFFactura.totalFactura.round()).abs();
+
+    if (_zecimale < Global.zecimale) {
+      UBFFactura.totalFactura = UBFFactura.totalFactura - _zecimale;
+      UBFFactura.totalFactFaraTva = UBFFactura.totalFactFaraTva - _zecimale;
+    }
   }
 }
