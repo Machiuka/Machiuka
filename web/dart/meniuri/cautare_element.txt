@@ -35,7 +35,7 @@ class CautareElement {
 
     InputElement _txtCautare = querySelector("#txtCautare") as InputElement;
 
-    void _clickFunction() {
+    _btnOK.onClick.listen((e) async {
       LoadDetalii ld = LoadDetalii();
       LoadFactura lf = LoadFactura();
 
@@ -128,20 +128,6 @@ class CautareElement {
         }
       }
       //-------------------
-    }
-
-    void apasareTasta(KeyboardEvent e) {
-      if (e.keyCode == KeyCode.ENTER) {
-        //     _clickFunction();
-        e.preventDefault(); //previne restart-ul cand se apasa enter in casuta de cautare
-
-        //e.stopImmediatePropagation();
-      }
-    }
-
-    document.onKeyPress.listen(apasareTasta);
-    _btnOK.onClick.listen((e) async {
-      _clickFunction();
     });
   }
 }

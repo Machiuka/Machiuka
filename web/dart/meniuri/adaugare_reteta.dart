@@ -49,24 +49,28 @@ class AdaugareReteta {
       // final DateTime dataCurenta = DateTime.parse(_dataDoc.value.toString());
       final DateFormat formatareData = DateFormat('yyyy-M-dd');
       final String dataDoc = formatareData.format(DateTime.now());
-      UBFDocument.tipDoc = 'rt';
-      UBFDocument.cotaTVA = _cotaTVA.valueAsNumber as int?;
-      UBFDocument.dataDoc = dataDoc; //preia automat data curenta
-      UBFDocument.codElem = _codPF.value;
-      UBFDocument.descriere = _descriere.value;
-      UBFDocument.denumire = _denumirePF.value;
-      UBFDocument.um = _um.value!;
+      try {
+        UBFDocument.tipDoc = 'rt';
+        UBFDocument.cotaTVA = _cotaTVA.valueAsNumber as int?;
+        UBFDocument.dataDoc = dataDoc; //preia automat data curenta
+        UBFDocument.codElem = _codPF.value;
+        UBFDocument.descriere = _descriere.value;
+        UBFDocument.denumire = _denumirePF.value;
+        UBFDocument.um = _um.value!;
 
-      UBFDocument.valabilitate = _valabilitate != double.nan ? _valabilitate.valueAsNumber as int? : 0;
-      UBFDocument.gramaj = _gramaj.valueAsNumber as int?;
-      UBFDocument.obsDoc = _obsDoc.value;
-      UBFDocument.activitate = _activitate;
-      UBFDocument.pretVanzare = _pretVanzare.valueAsNumber as double?;
-      UBFDocument.pretVanzare1 = _pretVanzare1.valueAsNumber as double?;
-      UBFDocument.pretVanzare2 = _pretVanzare2.valueAsNumber as double?;
-      UBFDocument.pretVanzare3 = _pretVanzare3.valueAsNumber as double?;
-      UBFDocument.pretVanzare4 = _pretVanzare4.valueAsNumber as double?;
-
+        UBFDocument.valabilitate = _valabilitate != double.nan ? _valabilitate.valueAsNumber as int? : 0;
+        UBFDocument.gramaj = _gramaj.valueAsNumber as int?;
+        UBFDocument.obsDoc = _obsDoc.value;
+        UBFDocument.activitate = _activitate;
+        UBFDocument.pretVanzare = _pretVanzare.valueAsNumber as double?;
+        UBFDocument.pretVanzare1 = _pretVanzare1.valueAsNumber as double?;
+        UBFDocument.pretVanzare2 = _pretVanzare2.valueAsNumber as double?;
+        UBFDocument.pretVanzare3 = _pretVanzare3.valueAsNumber as double?;
+        UBFDocument.pretVanzare4 = _pretVanzare4.valueAsNumber as double?;
+      } catch (e) {
+        window.alert("Trebuie completate toate campurile!");
+        window.location.reload();
+      }
       _formDocument.remove();
 
       CautareElement.cautareElement('RETETAR');

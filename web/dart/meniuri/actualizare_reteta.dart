@@ -83,22 +83,26 @@ class ActualizareReteta {
               final String dataDoc = formatareData.format(DateTime.now());
 
               //  window.alert(_cotaTVA.valueAsNumber.runtimeType.toString());
-
-              UBFDocument.cotaTVA = _cotaTVA.valueAsNumber! > 0 ? _cotaTVA.valueAsNumber as int : 9;
-              UBFDocument.dataDoc = dataDoc;
-              UBFDocument.valabilitate = _valabilitate != double.nan ? _valabilitate.valueAsNumber as int? : 0;
-              UBFDocument.denumire = _denumire.value;
-              UBFDocument.descriere = _descriere.value;
-              UBFDocument.gramaj = _gramaj.valueAsNumber! > 0 ? _gramaj.valueAsNumber as int : 0;
-              UBFDocument.obsDoc = _obsDoc.value;
-              UBFDocument.pretVanzare = _pretVanzare.valueAsNumber! > 0 ? _pretVanzare.valueAsNumber as double : 0.0;
-              UBFDocument.pretVanzare1 = _pretVanzare1.valueAsNumber! > 0 ? _pretVanzare1.valueAsNumber as double : 0.0;
-              UBFDocument.pretVanzare2 = _pretVanzare2.valueAsNumber! > 0 ? _pretVanzare2.valueAsNumber as double : 0.0;
-              UBFDocument.pretVanzare3 = _pretVanzare3.valueAsNumber! > 0 ? _pretVanzare3.valueAsNumber as double : 0.0;
-              UBFDocument.pretVanzare4 = _pretVanzare4.valueAsNumber! > 0 ? _pretVanzare4.valueAsNumber as double : 0.0;
-              UBFDocument.linkPhoto = _linkPhoto.value;
-              UBFDocument.operator = Global.operator;
-              UBFDocument.codElem = _codElem.value;
+              try {
+                UBFDocument.cotaTVA = _cotaTVA.valueAsNumber! > 0 ? _cotaTVA.valueAsNumber as int : 9;
+                UBFDocument.dataDoc = dataDoc;
+                UBFDocument.valabilitate = _valabilitate != double.nan ? _valabilitate.valueAsNumber as int? : 0;
+                UBFDocument.denumire = _denumire.value;
+                UBFDocument.descriere = _descriere.value;
+                UBFDocument.gramaj = _gramaj.valueAsNumber! > 0 ? _gramaj.valueAsNumber as int : 0;
+                UBFDocument.obsDoc = _obsDoc.value;
+                UBFDocument.pretVanzare = _pretVanzare.valueAsNumber! > 0 ? _pretVanzare.valueAsNumber as double : 0.0;
+                UBFDocument.pretVanzare1 = _pretVanzare1.valueAsNumber! > 0 ? _pretVanzare1.valueAsNumber as double : 0.0;
+                UBFDocument.pretVanzare2 = _pretVanzare2.valueAsNumber! > 0 ? _pretVanzare2.valueAsNumber as double : 0.0;
+                UBFDocument.pretVanzare3 = _pretVanzare3.valueAsNumber! > 0 ? _pretVanzare3.valueAsNumber as double : 0.0;
+                UBFDocument.pretVanzare4 = _pretVanzare4.valueAsNumber! > 0 ? _pretVanzare4.valueAsNumber as double : 0.0;
+                UBFDocument.linkPhoto = _linkPhoto.value;
+                UBFDocument.operator = Global.operator;
+                UBFDocument.codElem = _codElem.value;
+              } catch (e) {
+                window.alert("Trebuie completate toate campurile!");
+                window.location.reload();
+              }
               // LoadDetalii.incarcFormular('html/form_document.html'); //Este cerut la raspuns_tabel
               //await Future.delayed(const Duration(milliseconds: 50));
               //   window.alert(Global.continut);
