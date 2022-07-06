@@ -29,6 +29,10 @@ class AdaugareReteta {
     InputElement _denumirePF = querySelector("#denumire") as InputElement;
     InputElement _valabilitate = querySelector("#valabilitate") as InputElement;
     InputElement _pretVanzare = querySelector("#pretVanzare") as InputElement;
+    InputElement _pretVanzare1 = querySelector("#pretVanzare1") as InputElement;
+    InputElement _pretVanzare2 = querySelector("#pretVanzare2") as InputElement;
+    InputElement _pretVanzare3 = querySelector("#pretVanzare3") as InputElement;
+    InputElement _pretVanzare4 = querySelector("#pretVanzare4") as InputElement;
     InputElement _cotaTVA = querySelector("#cotaTVA") as InputElement;
     InputElement _descriere = querySelector("#descriere") as InputElement;
     InputElement _gramaj = querySelector("#gramaj") as InputElement;
@@ -55,6 +59,10 @@ class AdaugareReteta {
       UBFDocument.obsDoc = _obsDoc.value;
       UBFDocument.activitate = _activitate;
       UBFDocument.pretVanzare = _pretVanzare.valueAsNumber as double?;
+      UBFDocument.pretVanzare1 = _pretVanzare1.valueAsNumber as double?;
+      UBFDocument.pretVanzare2 = _pretVanzare2.valueAsNumber as double?;
+      UBFDocument.pretVanzare3 = _pretVanzare3.valueAsNumber as double?;
+      UBFDocument.pretVanzare4 = _pretVanzare4.valueAsNumber as double?;
 
       _formDocument.remove();
 

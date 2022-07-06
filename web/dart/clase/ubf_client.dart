@@ -19,6 +19,7 @@ class UBFClient {
   static String? numeAgent;
   static int? tPlata;
   static String? nrLot; //nr lotului de produse
+  static String listaPret = ""; // "" preturi normale, "1" preturi Pitesti, "2" preturi lux, "3" preturi economice, "4" preturi din lista rezerva
 
   Map<String, dynamic> toJson() => {
         'idx': idx,
@@ -40,6 +41,7 @@ class UBFClient {
         'masina': masina,
         'numeAgent': numeAgent,
         'tPlata': tPlata,
-        'nrLot': nrLot
+        'nrLot': nrLot,
+        'listaPret': listaPret
       };
 }

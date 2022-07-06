@@ -41,7 +41,6 @@ class LoadDetalii {
         elem.onClick.listen((e) async {
           Global.cod_doc = _json[i]['cod_doc'];
           Global.denumire = _json[i]['denumire'];
-          Global.um = _json[i]['um'];
           DetaliiElement detaliiElement = DetaliiElement();
 
           detaliiElement.detaliiElement();
@@ -71,7 +70,7 @@ class LoadDetalii {
         lista.children.add(elem..text = _json[i]['denumire']);
         elem.onClick.listen((e) {
           String crit = elem.innerHtml.toString();
-          loader.cautaPeServer(criteriu: crit, tabel: tabel, numeServer: numeServerPrimar, optiune: "r").then((value) async {
+          loader.cautaPeServer(criteriu: crit, tabel: tabel, numeServer: numeServerSecundar, optiune: "r").then((value) async {
             value = value.replaceAll("[", "");
             value = value.replaceAll("]", "");
             //    window.alert('Value reteta este $value');
@@ -116,7 +115,7 @@ class LoadDetalii {
       tabel: tabel,
     )
         .then((rezultat) {
-      //  window.alert(rezultat);
+      //   window.alert(rezultat);
       final _json = json.decode(rezultat);
       lista.children.clear();
       for (int i = 0; i < _json.length; i++) {
@@ -126,7 +125,7 @@ class LoadDetalii {
           bool confirmare = window.confirm("Elementul ${_json[i]['denumire']} va fi sters. Ok, pt confirmare, Cancel pt anulare");
           if (confirmare) {
             String crit = _json[i]['id'].toString();
-            //  window.alert('Criteriul de stergere este $crit');
+            //    window.alert('Criteriul de stergere este $crit');
             loader.cautaPeServer(criteriu: crit, tabel: tabel, numeServer: numeServer, optiune: "d").then((value) async {
               value = value.replaceAll("[", "");
               value = value.replaceAll("]", "");
@@ -174,9 +173,7 @@ class LoadDetalii {
         //  print(rezultat);
         //window.alert("Raspuns server: " + rezultat);
         final _json = json.decode(rezultat);
-        // RaspunsTabel.raspunsTabel(_json);
-        window.alert("Produsul " + _json['denumire'] + " a fost adaugat/modificat!");
-        window.location.reload();
+        RaspunsTabel.raspunsTabel(_json);
       } catch (e) {
         window.alert('EROARE!!!...' + e.toString());
       }

@@ -29,6 +29,7 @@ class Global {
   static Map<String, dynamic>? js; //nefolosit
   static String denumire = '';
   static String cod_doc = '';
+  static String um = ''; //unitate de masura a produsului, mat prime
   static String cantitate = '';
   static String pret = ''; //este pretul cu TVA pentru a fi actualizat in factura, reteta, aviz
   static String articoleFactura = ''; //este un sir de tip Json

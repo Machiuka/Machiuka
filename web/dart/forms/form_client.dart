@@ -31,6 +31,7 @@ class FormClient {
     InputElement _analitic = querySelector("#contAnalitic") as InputElement;
     InputElement _numeAgent = querySelector("#numeAgent") as InputElement;
     InputElement _grupaClient = querySelector("#grupaClient") as InputElement;
+    InputElement _listaPret = querySelector("#listaPret") as InputElement;
 
     _codClient.defaultValue = (Global.ultimNumar['nrClient']! + 1).toString();
     LoadDetalii ld = LoadDetalii();
@@ -55,6 +56,7 @@ class FormClient {
       UBFClient.analitic = _analitic.value;
       UBFClient.grupa = _grupaClient.value;
       UBFClient.numeAgent = _numeAgent.value;
+      UBFClient.listaPret = _listaPret.value.toString();
 
       ld.loadIncarcareClient('tbl_parteneri', 'serverAdaugClient', 'c', client);
     });
@@ -88,6 +90,7 @@ class FormClient {
     InputElement _analitic = querySelector("#contAnalitic") as InputElement;
     InputElement _numeAgent = querySelector("#numeAgent") as InputElement;
     InputElement _grupaClient = querySelector("#grupaClient") as InputElement;
+    InputElement _listaPret = querySelector("#listaPret") as InputElement;
 //-----------------------------------------------
 
     _codClient.defaultValue = UBFClient.codElem.toString();
@@ -131,6 +134,7 @@ class FormClient {
       UBFClient.analitic = _analitic.value;
       UBFClient.grupa = _grupaClient.value;
       UBFClient.numeAgent = _numeAgent.value;
+      UBFClient.listaPret = _listaPret.value == 0 ? "" : _listaPret.value.toString();
 
       ld.loadIncarcareClient('tbl_parteneri', 'serverAdaugClient', 'u', client);
       window.location.reload();

@@ -23,7 +23,7 @@ class CautareReteta {
         if (caut != null) {
           _formCautare.replaceWith(_formDetalii); //sterg formularul pentru a nu se adauga cautare peste cautare
           LoadDetalii ld = LoadDetalii();
-          ld.loadInterogare(caut, "tbl_retete", "serverCautStergReteta", "servReteta");
+          ld.loadInterogare(caut, "tbl_produse", "serverCautStergReteta", "servReteta");
         } else {
           window.location.reload(); //echivalent cu refresh pagina
         }

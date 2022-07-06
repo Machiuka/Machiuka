@@ -29,13 +29,13 @@ class Loader {
         '?x={"criteriu":"$criteriu", "tabel":"$tabel", "optiune":"$optiune", "durataSesiunii":"${Global.durataSesiunii}", "operator":"${Global.operator}"}';
 
     //window.alert(path);
-    //print(path);
+    // print(path);
     // var response = await http.get(Uri.parse(path), headers: _headers);
     var response = await http.get(Uri.parse(path));
     if (response.statusCode == 200) {
       String rezultat = response.body;
-      //window.alert(rezultat);
-      //print(rezultat);
+      // window.alert(rezultat);
+//      print(rezultat);
       return rezultat;
     }
     // The GET request failed. Handle the error.
@@ -80,14 +80,14 @@ class Loader {
     // window.alert(_js);
     //String _path = 'http://localhost/' + numeServer + '?x=' + _js;
     String _path = Global.url + numeServer + '?x=' + _js;
-    // print(_path);
+    //print(_path);
     //window.alert(_path);
 
     // var response = await http.get(Uri.parse(path), headers: _headers);
     var response = await http.get(Uri.parse(_path));
     if (response.statusCode == 200) {
       final jsonString = response.body;
-      // window.alert(jsonString);
+      //window.alert(jsonString);
       //print(jsonString);
       return jsonString;
     }

@@ -13,10 +13,6 @@ class UBFDocument {
   static String? obsDoc;
   static String operator = Global.operator; //doar in test am nevoie de el
   static double? pretVanzare;
-  static double? pretVanzare1; //Pitesti
-  static double? pretVanzare2; //Lux
-  static double? pretVanzare3; //Economic
-  static double? pretVanzare4; //Rezerva
   static int? cotaTVA;
   static int incasata = 1; //0 pt neincasata
   static int? valabilitate; //pt facturi este termen de plata
@@ -55,10 +51,6 @@ class UBFDocument {
         'incasata': incasata,
         'descriere': descriere,
         'pretVanzare': pretVanzare,
-        'pretVanzare1': pretVanzare1,
-        'pretVanzare2': pretVanzare2,
-        'pretVanzare3': pretVanzare3,
-        'pretVanzare4': pretVanzare4,
         'cotaTVA': cotaTVA,
         'linkPhoto': linkPhoto,
         'activitate': activitate,

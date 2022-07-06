@@ -30,7 +30,8 @@ class ActualizareReteta {
         LIElement elem = LIElement();
         lista.children.add(elem..text = _json[i]['denumire']);
         elem.onClick.listen((e) {
-          String crit = _json[i]['cod_doc'];
+          // String crit = _json[i]['cod_doc'];
+          String crit = _json[i]['denumire'];
           kk.cautaPeServer(criteriu: crit, tabel: tabel, numeServer: numeServer, optiune: "u").then((value) async {
             value = value.replaceAll("[", "");
             value = value.replaceAll("]", "");
@@ -52,6 +53,10 @@ class ActualizareReteta {
             InputElement _valabilitate = querySelector("#valabilitate") as InputElement;
             InputElement _descriere = querySelector("#descriere") as InputElement;
             InputElement _pretVanzare = querySelector("#pretVanzare") as InputElement;
+            InputElement _pretVanzare1 = querySelector("#pretVanzare1") as InputElement;
+            InputElement _pretVanzare2 = querySelector("#pretVanzare2") as InputElement;
+            InputElement _pretVanzare3 = querySelector("#pretVanzare3") as InputElement;
+            InputElement _pretVanzare4 = querySelector("#pretVanzare4") as InputElement;
             InputElement _cotaTVA = querySelector("#cotaTVA") as InputElement;
             InputElement _obsDoc = querySelector("#obsDoc") as InputElement;
             InputElement _linkPhoto = querySelector("#linkPhoto") as InputElement;
@@ -64,6 +69,10 @@ class ActualizareReteta {
             _valabilitate.value = _js['valabilitate'];
             _descriere.value = _js['descriere'];
             _pretVanzare.value = _js['pret_vanzare'];
+            _pretVanzare1.value = _js['pret_vanzare1'];
+            _pretVanzare2.value = _js['pret_vanzare2'];
+            _pretVanzare3.value = _js['pret_vanzare3'];
+            _pretVanzare4.value = _js['pret_vanzare4'];
             _cotaTVA.value = _js['cota_tva'];
             _obsDoc.value = _js['obs'];
             _linkPhoto.value = _js['link_photo'];
@@ -83,11 +92,15 @@ class ActualizareReteta {
               UBFDocument.gramaj = _gramaj.valueAsNumber! > 0 ? _gramaj.valueAsNumber as int : 0;
               UBFDocument.obsDoc = _obsDoc.value;
               UBFDocument.pretVanzare = _pretVanzare.valueAsNumber! > 0 ? _pretVanzare.valueAsNumber as double : 0.0;
+              UBFDocument.pretVanzare1 = _pretVanzare1.valueAsNumber! > 0 ? _pretVanzare1.valueAsNumber as double : 0.0;
+              UBFDocument.pretVanzare2 = _pretVanzare2.valueAsNumber! > 0 ? _pretVanzare2.valueAsNumber as double : 0.0;
+              UBFDocument.pretVanzare3 = _pretVanzare3.valueAsNumber! > 0 ? _pretVanzare3.valueAsNumber as double : 0.0;
+              UBFDocument.pretVanzare4 = _pretVanzare4.valueAsNumber! > 0 ? _pretVanzare4.valueAsNumber as double : 0.0;
               UBFDocument.linkPhoto = _linkPhoto.value;
               UBFDocument.operator = Global.operator;
               UBFDocument.codElem = _codElem.value;
-              LoadDetalii.incarcFormular('html/form_document.html'); //Este cerut la raspuns_tabel
-              await Future.delayed(const Duration(milliseconds: 50));
+              // LoadDetalii.incarcFormular('html/form_document.html'); //Este cerut la raspuns_tabel
+              //await Future.delayed(const Duration(milliseconds: 50));
               //   window.alert(Global.continut);
               formUpdate.remove();
               ld.loadIncarcareDoc("tbl_produse", "serverUpdateReteta", "rt", UBFDocument());

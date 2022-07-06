@@ -8,12 +8,11 @@ import '../meniuri/cautare_element.dart';
 class DetaliiElement {
   Future detaliiElement() async {
     FormElement _formDetalii = querySelector("#formDetalii") as FormElement;
-    LoadDetalii.incarcFormular('html/form_mp.html');
+    LoadDetalii.incarcFormular('html/form_element.html');
     await Future.delayed(const Duration(milliseconds: 50));
-    FormElement _formElement = querySelector("#formMP") as FormElement;
+    FormElement _formElement = querySelector("#formElement") as FormElement;
     InputElement _denumire = querySelector("#denumire") as InputElement;
     InputElement _cod = querySelector("#cod") as InputElement;
-    InputElement _unitMas = querySelector("#unitMas") as InputElement;
     InputElement _cantitate = querySelector("#cantitate") as InputElement;
     Element _textElem = querySelector("#titluElement") as Element;
     Element _btnAdaug = querySelector("#btnAdaug") as Element;
@@ -23,14 +22,12 @@ class DetaliiElement {
 
     _textElem.innerHtml = UBFDocument.emitentDoc;
     _denumire.defaultValue = Global.denumire;
-    _unitMas.defaultValue = Global.um;
     _cod.defaultValue = 'Cod: ' + Global.cod_doc;
 
     _btnAdaug.onClick.listen((e) {
       Global.cantitate = _cantitate.value.toString();
       UBFDocument.articol['cantitate'] = Global.cantitate;
       UBFDocument.articol['codElem'] = Global.cod_doc;
-      UBFDocument.articol['unitMas'] = Global.um;
       UBFDocument.articol['denumire'] = Global.denumire;
       UBFDocument.continutDoc = UBFDocument.continutDoc + jsonEncode(UBFDocument.articol) + ',';
 

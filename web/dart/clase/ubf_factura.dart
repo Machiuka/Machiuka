@@ -34,6 +34,12 @@ class UBFFactura {
     }
   }
 
+  String listaPret() {
+    LocalStorage _local = LocalStorage();
+    String _lista = _local.cauta('listaPret') == null ? "" : _local.cauta('listaPret').toString();
+    return _lista;
+  }
+
 //sectiunea Cumparator
   static Map<String, dynamic> dateCumparator = UBFClient().toJson();
 
@@ -71,6 +77,7 @@ class UBFFactura {
         'achitata': achitata,
         'operator': operator,
         'activitate': activitate,
-        'continut': articoleFactura
+        'continut': articoleFactura,
+        'lista_pret': listaPret()
       };
 }
