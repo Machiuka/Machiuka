@@ -35,6 +35,7 @@ class AdaugareReteta {
     InputElement _pretVanzare4 = querySelector("#pretVanzare4") as InputElement;
     InputElement _cotaTVA = querySelector("#cotaTVA") as InputElement;
     InputElement _descriere = querySelector("#descriere") as InputElement;
+    InputElement _um = querySelector("#um") as InputElement;
     InputElement _gramaj = querySelector("#gramaj") as InputElement;
     InputElement _obsDoc = querySelector("#obsDoc") as InputElement;
 
@@ -54,7 +55,9 @@ class AdaugareReteta {
       UBFDocument.codElem = _codPF.value;
       UBFDocument.descriere = _descriere.value;
       UBFDocument.denumire = _denumirePF.value;
-      UBFDocument.valabilitate = _valabilitate.valueAsNumber as int?;
+      UBFDocument.um = _um.value!;
+
+      UBFDocument.valabilitate = _valabilitate != double.nan ? _valabilitate.valueAsNumber as int? : 0;
       UBFDocument.gramaj = _gramaj.valueAsNumber as int?;
       UBFDocument.obsDoc = _obsDoc.value;
       UBFDocument.activitate = _activitate;

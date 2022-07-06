@@ -175,7 +175,11 @@ class LoadDetalii {
         //window.alert("Raspuns server: " + rezultat);
         final _json = json.decode(rezultat);
         // RaspunsTabel.raspunsTabel(_json);
-        window.alert("Produsul " + _json['denumire'] + " a fost adaugat/modificat!");
+        if (_json['eroare'] == null) {
+          window.alert("Produsul " + _json['denumire'] + " a fost adaugat/modificat!");
+        } else {
+          window.alert("Produsul/serviciul  exista!");
+        }
         window.location.reload();
       } catch (e) {
         window.alert('EROARE!!!...' + e.toString());

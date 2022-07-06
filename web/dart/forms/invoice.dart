@@ -4,6 +4,7 @@ import '../clase/load_detalii.dart';
 import 'dart:convert';
 import '../clase/css.dart';
 import 'package:intl/intl.dart';
+import '../clase/local_storage.dart';
 
 class Invoice {
   static void afisFactura(String tipDoc, Map<String, dynamic> _json) async {
@@ -23,7 +24,8 @@ class Invoice {
         cuPret = window.confirm("Doriti afisare preturi? Ok, pt confirmare, Cancel pt afisare fara preturi");
         formular = 'html/aviz.html';
       }
-
+      LocalStorage _local = LocalStorage();
+      String? _activitate = _local.cauta("activitate");
       LoadDetalii.incarcFormular(formular);
       await Future.delayed(const Duration(milliseconds: 350));
 
@@ -46,6 +48,7 @@ class Invoice {
       SpanElement totalFact = querySelector('#totalFact') as SpanElement;
       SpanElement tPlata = querySelector('#tPlata') as SpanElement;
       SpanElement nrLot = querySelector('#nrLot') as SpanElement; //Nr lotului din care fac parte produsele
+      SpanElement labo = querySelector('#labo') as SpanElement;
 
       LabelElement nrFact = querySelector('#cod_doc') as LabelElement;
 
@@ -60,7 +63,10 @@ class Invoice {
       SpanElement ciPol = querySelector('#ciPol') as SpanElement;
 
 //*************** */
-
+      if (_activitate != "Laborator") {
+        //Nu am nevoie sa imi afiseze lot si standard de firma decat la laborator
+        labo.hidden = true;
+      }
       final DateFormat formatareData = DateFormat('dd.M.yyyy');
       DateTime dataF = DateTime.parse(_json['data_doc']);
       String dataFs = formatareData.format(dataF);
@@ -147,8 +153,13 @@ class Invoice {
         styleSheet.insertRule(rule, 0);
         k = k + 1;
         cell = row.insertCell(k);
+        articol['valabilitate'] = articol['valabilitate'] != null ? articol['valabilitate'] : "0";
+        int _valab = int.parse(articol['valabilitate']);
 
-        cell.text = articol['denumire'] + " (termen valabilitate:" + articol['valabilitate'] + " zile)"; // Aici introduc termen de valabilitate
+        cell.text = _valab > 0
+            ? articol['denumire'] + " (termen valabilitate:" + articol['valabilitate'] + " zile)"
+            : articol['denumire']; // Aici introduc termen de valabilitate
+
         cell.id = 'denArt';
         rule = '#denArt {text-align:left;}';
         styleSheet.insertRule(rule, 0);

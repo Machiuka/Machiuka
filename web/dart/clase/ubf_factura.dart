@@ -21,7 +21,7 @@ class UBFFactura {
   static int achitata = 1; //0 pt fact neachitate
   static String operator = Global.operator;
   static String activitate = '';
-
+  static String listaPret = '';
 //Sectiunea Vanzator
 
   Map<String, String> dateVanzator() {
@@ -32,12 +32,6 @@ class UBFFactura {
     } else {
       return VanzatorUBF().dateVanzator();
     }
-  }
-
-  String listaPret() {
-    LocalStorage _local = LocalStorage();
-    String _lista = _local.cauta('listaPret') == null ? "" : _local.cauta('listaPret').toString();
-    return _lista;
   }
 
 //sectiunea Cumparator
@@ -78,6 +72,6 @@ class UBFFactura {
         'operator': operator,
         'activitate': activitate,
         'continut': articoleFactura,
-        'lista_pret': listaPret()
+        'lista_pret': listaPret
       };
 }

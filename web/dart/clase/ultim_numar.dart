@@ -22,8 +22,8 @@ class UltimNumar {
       ld.cautaPeServer(criteriu: 'criteriu', tabel: 'tabel', numeServer: 'serverUltimNumar', optiune: sufix).then((value) {
         final _json = json.decode(value);
 
-        Global.ultimNumar['nrFactura'] = int.parse(_json['nrFactura']);
-        Global.ultimNumar['nrAviz'] = int.parse(_json['nrAviz']);
+        Global.ultimNumar['nrFactura'] = double.parse(_json['nrFactura']);
+        Global.ultimNumar['nrAviz'] = double.parse(_json['nrAviz']);
         Global.ultimNumar['nrReteta'] = int.parse(_json['nrReteta']);
         Global.ultimNumar['nrClient'] = int.parse(_json['nrClient']);
         Global.ultimNumar['nrProdus'] = int.parse(_json['nrProdus']);

@@ -86,7 +86,7 @@ class ActualizareReteta {
 
               UBFDocument.cotaTVA = _cotaTVA.valueAsNumber! > 0 ? _cotaTVA.valueAsNumber as int : 9;
               UBFDocument.dataDoc = dataDoc;
-              UBFDocument.valabilitate = _valabilitate.valueAsNumber as int;
+              UBFDocument.valabilitate = _valabilitate != double.nan ? _valabilitate.valueAsNumber as int? : 0;
               UBFDocument.denumire = _denumire.value;
               UBFDocument.descriere = _descriere.value;
               UBFDocument.gramaj = _gramaj.valueAsNumber! > 0 ? _gramaj.valueAsNumber as int : 0;

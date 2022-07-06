@@ -25,6 +25,7 @@ class UBFDocument {
   static int? gramaj;
   static String? linkPhoto;
   static String? activitate;
+  static String um = "buc.";
   //Sectiunea date
   static Map<String, dynamic> articol = {
     'codElem': '',
@@ -62,6 +63,7 @@ class UBFDocument {
         'cotaTVA': cotaTVA,
         'linkPhoto': linkPhoto,
         'activitate': activitate,
-        'operator': operator
+        'operator': operator,
+        'um': um
       };
 }

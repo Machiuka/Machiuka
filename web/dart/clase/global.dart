@@ -16,7 +16,7 @@ class Global {
   static String codOperator = "xxx"; //A01...A04
   static String continut = ''; //continutul retetei, facturii, avizului...sub forma '102^2|
   //ultimNumar preia la inceput ultimele numere de pe server pentru fiecare categorie (factura, aviz, etc) pt a avea numere/coduri unice
-  static Map<String, int> ultimNumar = {
+  static Map<String, num> ultimNumar = {
     'nrFactura': 100,
     'nrAviz': 200,
     'nrProdus': 9900,

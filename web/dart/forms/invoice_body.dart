@@ -158,7 +158,12 @@ class InvoiceBody {
         styleSheet.insertRule(rule, 0);
         k = k + 1;
         cell = row.insertCell(k);
-        cell.text = articol['denumire'] + " (termen valabilitate:" + articol['valabilitate'] + " zile)"; // Aici introduc termen de valabilitate
+        articol['valabilitate'] = articol['valabilitate'] != null ? articol['valabilitate'] : "0";
+        int _valab = int.parse(articol['valabilitate']);
+        cell.text = _valab > 0
+            ? articol['denumire'] + " (termen valabilitate:" + articol['valabilitate'] + " zile)"
+            : articol['denumire']; // Aici introduc termen de valabilitate
+
         cell.id = 'denArt';
         rule = '#denArt {text-align:left;}';
         styleSheet.insertRule(rule, 0);

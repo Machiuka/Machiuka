@@ -47,7 +47,9 @@ class LoadFactura {
         elem.onClick.listen((e) async {
           UBFFactura.articol['codElem'] = _json[i]['cod_doc'];
           UBFFactura.articol['denumire'] = _json[i]['denumire'];
-          UBFFactura.articol['pret'] = _json[i]['pret_vanzare'];
+          UBFFactura.listaPret = UBFClient.listaPret;
+          UBFFactura.articol['pret'] = _json[i]['pret_vanzare' + UBFFactura.listaPret];
+
           UBFFactura.articol['valabilitate'] = _json[i]['valabilitate']; //termenul de valabilitate e necesar la completarea Certif de garantie
 
           UBFFactura.articol['ctva'] = _json[i]['cota_tva'];
@@ -106,6 +108,7 @@ class LoadFactura {
             UBFClient.delegat = _json[i]['delegat'];
             UBFClient.analitic = _json[i]['analitic'];
             UBFClient.masina = _json[i]['masina'];
+            UBFClient.listaPret = _json[i]['lista_pret'];
             if (tipDoc == 'fe') {
               UBFClient.discount = int.parse(_json[i]['discount']);
               UBFClient.tPlata = int.parse(_json[i]['t_plata']);
