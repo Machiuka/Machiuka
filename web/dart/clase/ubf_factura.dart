@@ -17,6 +17,7 @@ class UBFFactura {
   static double valDiscount = 0.00;
   static double tvaDiscount = 0.00;
   static int discount = 0;
+  static int adaos = 0;
   static int termenPlata = 0;
   static int achitata = 1; //0 pt fact neachitate
   static String operator = Global.operator;
@@ -64,6 +65,7 @@ class UBFFactura {
         'tva9': tva9,
         'total_tva': tva,
         'date_firma': dateVanzator(),
+        'adaos': adaos,
         'discount': discount,
         'val_discount': valDiscount,
         'tva_discount': tvaDiscount,

@@ -4,6 +4,7 @@ class UBFClient {
   static String? denumire;
   static String? cui;
   static String? analitic;
+  static int adaos = 0;
   static int? discount;
   static String? adresa;
   static String? contBanca;
@@ -27,6 +28,7 @@ class UBFClient {
         'denumire': denumire,
         'cui': cui,
         'analitic': analitic,
+        'adaos': adaos,
         'discount': discount,
         'adresa': adresa,
         'contBanca': contBanca,

@@ -52,6 +52,7 @@ class LoadClient {
             UBFClient.contBanca = _json[i]['cont_banca'];
             UBFClient.cui = _json[i]['cod_fiscal'];
             UBFClient.delegat = _json[i]['delegat'];
+            UBFClient.adaos = int.parse(_json[i]['adaos']);
             UBFClient.discount = int.parse(_json[i]['discount']);
             UBFClient.tPlata = int.parse(_json[i]['t_plata']);
             UBFClient.tel = _json[i]['tel'];

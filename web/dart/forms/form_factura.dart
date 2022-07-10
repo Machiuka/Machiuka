@@ -26,6 +26,7 @@ class FormFactura {
     InputElement _ciDelegat = querySelector("#ciDelegat") as InputElement;
     InputElement _ciPol = querySelector("#ciPol") as InputElement;
     InputElement _masina = querySelector("#masina") as InputElement;
+    InputElement _adaos = querySelector("#adaos") as InputElement;
     InputElement _discount = querySelector("#discount") as InputElement;
     InputElement _tPlata = querySelector("#tPlata") as InputElement;
     String _activitate = local.cauta('activitate').toString();
@@ -33,6 +34,7 @@ class FormFactura {
     _ciDelegat.defaultValue = UBFClient.ciNr;
     _ciPol.defaultValue = UBFClient.ciPol;
     _masina.defaultValue = UBFClient.masina;
+    _adaos.defaultValue = UBFClient.adaos.toString();
 
     if (tipDoc == 'fe') {
       _discount.defaultValue = UBFClient.discount.toString();
@@ -51,6 +53,8 @@ class FormFactura {
     _btnAdauga.onClick.listen((e) {
       UBFFactura.nrFact = int.parse(_nrFact.defaultValue!);
       UBFFactura.activitate = _activitate;
+      UBFFactura.adaos = int.parse(_adaos.value!);
+      UBFClient.adaos = int.parse(_adaos.value!);
       if (tipDoc == 'fe') {
         UBFClient.discount = int.parse(_discount.value!);
         UBFClient.tPlata = int.parse(_tPlata.value!);

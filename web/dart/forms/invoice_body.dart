@@ -270,6 +270,7 @@ class InvoiceBody {
         UBFFactura.achitata = termenPlata > 0 ? 0 : 1;
         UBFFactura.dateCumparator = _json['date_partener'];
         UBFFactura.nrFact = int.parse(_json['cod_doc']);
+        UBFFactura.adaos = int.parse(_json['adaos']);
         UBFFactura.dataFact = _json['data_doc'];
         Global.operator = local.cauta('utilizator')!;
         divFactura.remove();

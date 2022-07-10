@@ -20,6 +20,7 @@ class FormClient {
     InputElement _ciPol = querySelector("#ciPolC") as InputElement;
     InputElement _masina = querySelector("#masinaC") as InputElement;
     InputElement _discount = querySelector("#discountC") as InputElement;
+    InputElement _adaos = querySelector("#adaosC") as InputElement;
     InputElement _tPlata = querySelector("#tPlataC") as InputElement;
     InputElement _cuiClient = querySelector("#cuiClient") as InputElement;
     InputElement _cifClient = querySelector("#cifClient") as InputElement;
@@ -45,6 +46,7 @@ class FormClient {
       UBFClient.ciPol = _ciPol.value;
       UBFClient.masina = _masina.value;
       UBFClient.discount = _discount.value != null ? int.parse(_discount.value!) : 0;
+      UBFClient.adaos = _adaos.value != null ? int.parse(_adaos.value!) : 0;
       UBFClient.tPlata = _tPlata.value != null ? int.parse(_tPlata.value!) : 0;
       UBFClient.cui = _cuiClient.value;
       UBFClient.cif = _cifClient.value;
@@ -79,6 +81,7 @@ class FormClient {
     InputElement _ciPol = querySelector("#ciPolC") as InputElement;
     InputElement _masina = querySelector("#masinaC") as InputElement;
     InputElement _discount = querySelector("#discountC") as InputElement;
+    InputElement _adaos = querySelector("#adaosC") as InputElement;
     InputElement _tPlata = querySelector("#tPlataC") as InputElement;
     InputElement _cuiClient = querySelector("#cuiClient") as InputElement;
     InputElement _cifClient = querySelector("#cifClient") as InputElement;
@@ -99,6 +102,7 @@ class FormClient {
     _ciDelegat.defaultValue = UBFClient.ciNr;
     _ciPol.defaultValue = UBFClient.ciPol;
     _masina.defaultValue = UBFClient.masina;
+    _adaos.defaultValue = UBFClient.adaos.toString();
     _discount.defaultValue = UBFClient.discount.toString();
     _tPlata.defaultValue = UBFClient.tPlata.toString();
     _cifClient.defaultValue = UBFClient.cif;
@@ -122,6 +126,7 @@ class FormClient {
       UBFClient.ciNr = _ciDelegat.value;
       UBFClient.ciPol = _ciPol.value;
       UBFClient.masina = _masina.value;
+      UBFClient.adaos = _adaos.value != null ? int.parse(_adaos.value!) : 0;
       UBFClient.discount = _discount.value != null ? int.parse(_discount.value!) : 0;
       UBFClient.tPlata = _tPlata.value != null ? int.parse(_tPlata.value!) : 0;
       UBFClient.cui = _cuiClient.value;

@@ -31,7 +31,7 @@ class DetaliiFactura {
     _valabilitate.defaultValue = UBFFactura.articol['valabilitate'];
     _unitMas.defaultValue = UBFFactura.articol['unit_mas'];
     _ctva.defaultValue = UBFFactura.articol['ctva'];
-    _pret.defaultValue = UBFFactura.articol['pret'];
+    _pret.defaultValue = UBFFactura.articol['pret'].toString();
     _cod.defaultValue = 'Cod: ' + UBFFactura.articol['codElem'];
     _cantitate.onChange.listen((event) => _btnAdaug.hidden = false);
 

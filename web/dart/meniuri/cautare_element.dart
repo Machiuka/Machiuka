@@ -76,10 +76,13 @@ class CautareElement {
           //calculeaza discount
 
           //fiindca deja am incarcat discounturile din invoice_body.dart cand operatie este true adica actualizare
+
           if (UBFClient.discount! > 0) {
             int? discount = UBFClient.discount;
+
             UBFFactura.discount = discount!;
             UBFFactura.valDiscount = UBFFactura.totalFactFaraTva * discount / 100;
+
             UBFFactura.totalFactFaraTva = UBFFactura.totalFactFaraTva - UBFFactura.valDiscount;
             UBFFactura.tvaDiscount = UBFFactura.tva19 * discount / 100;
             UBFFactura.tva19 = UBFFactura.tva19 - UBFFactura.tvaDiscount;

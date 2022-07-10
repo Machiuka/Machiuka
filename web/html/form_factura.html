@@ -2,18 +2,20 @@
        <form id="formFactura" class="formular"> 
       <h1 id="titluFactura">Document</h1>
       <div class="info">
-               <label>Nr.factura</label><input type="text" id="nrFact" disabled>
+               <label>Nr.doc</label><input type="text" id="nrFact" disabled>
         <label>Nume client</label><input type="text" id="numeClient" disabled>
         <label>Numarul lotului</label><input type="text" id="nrLot" >
         <label>Delegat</label><input type="text" id="delegat" >
         <label>CI delegat</label><input type="text" id="ciDelegat" >
         <label>Emitent CI delegat</label><input type="text" id="ciPol" >
         <label>Nr auto</label><input type="text" id="masina" >
+        
     <div id="isFactura">
-        <label>Discount</label><input type="number" id="discount" min="0"><br>
+      
+      <label>Discount [%]</label><input type="number" id="discount" min="0"><br>
         <label>Termen de plata [zile]</label><input type="number" id="tPlata" min="0">
       </div>
-   
+      <label>Adaos comercial [%]</label><input type="number" id="adaos" min="0"><br>
     
       <div class="wp-block-group rez-anal"><div class="wp-block-group__inner-container"><div class="wp-block-columns"><div class="wp-block-column" style="flex-basis:100%"></div></div><div class="netta-cta-box">
         <div class="interc-items"><div class="interc-item"><div class="interc-image">

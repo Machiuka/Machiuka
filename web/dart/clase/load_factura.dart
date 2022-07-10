@@ -48,7 +48,13 @@ class LoadFactura {
           UBFFactura.articol['codElem'] = _json[i]['cod_doc'];
           UBFFactura.articol['denumire'] = _json[i]['denumire'];
           UBFFactura.listaPret = UBFClient.listaPret;
-          UBFFactura.articol['pret'] = _json[i]['pret_vanzare' + UBFFactura.listaPret];
+          String pretS = _json[i]['pret_vanzare' + UBFFactura.listaPret];
+          double pret = double.parse(pretS);
+
+          if (UBFFactura.adaos > 0) {
+            pret = pret * (1 + UBFFactura.adaos / 100);
+          }
+          UBFFactura.articol['pret'] = pret.round();
 
           UBFFactura.articol['valabilitate'] = _json[i]['valabilitate']; //termenul de valabilitate e necesar la completarea Certif de garantie
 
@@ -109,6 +115,7 @@ class LoadFactura {
             UBFClient.analitic = _json[i]['analitic'];
             UBFClient.masina = _json[i]['masina'];
             UBFClient.listaPret = _json[i]['lista_pret'];
+            UBFClient.adaos = int.parse(_json[i]['adaos']);
             if (tipDoc == 'fe') {
               UBFClient.discount = int.parse(_json[i]['discount']);
               UBFClient.tPlata = int.parse(_json[i]['t_plata']);
@@ -232,7 +239,7 @@ class LoadFactura {
           rezultat = rezultat.replaceAll('"{', '{');
           rezultat = rezultat.replaceAll('}"', '}');
           //print(rezultat);
-          //  window.alert("Raspuns server: " + rezultat);
+          //window.alert("Raspuns server: " + rezultat);
           final _json = json.decode(rezultat);
 
           Invoice.afisFactura(tipDoc, _json);
