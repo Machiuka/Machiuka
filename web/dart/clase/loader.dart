@@ -10,32 +10,40 @@ import 'global.dart';
 
 class Loader {
   //nu am nevoie de headers, fiindca setarea e din serverul php
+  final bool _debug = false; //True afiseaza mesaje de debug
 
   final _headers = {
     "Accept": "application/json",
   };
 
-  Future<String> cautaPeServer({
-    required String criteriu,
-    required String tabel,
-    required String numeServer,
-    required String optiune,
-  }) async {
+  Future<String> cautaPeServer(
+      {required String criteriu,
+      required String tabel,
+      required String numeServer,
+      required String optiune,
+      String? dataInceput,
+      String? dataSfarsit,
+      String? produs}) async {
     numeServer = numeServer + ".php";
-    //const path = 'https://netta.ro/ubf/test/'.?numeServer.'?x={"obj":"pf"}';
-    //  String path = 'http://localhost/' +
-    String path = Global.url +
-        numeServer +
-        '?x={"criteriu":"$criteriu", "tabel":"$tabel", "optiune":"$optiune", "durataSesiunii":"${Global.durataSesiunii}", "operator":"${Global.operator}"}';
-
-    //window.alert(path);
-    // print(path);
+    String query = "";
+    if (numeServer == "serverRaportare.php") {
+      query =
+          '?x={"criteriu":"$criteriu", "tabel":"$tabel", "optiune":"$optiune", "dataInceput":"${dataInceput}", "dataSfarsit":"${dataSfarsit}", "produs":"${produs}"}';
+    } else {
+      query =
+          '?x={"criteriu":"$criteriu", "tabel":"$tabel", "optiune":"$optiune", "durataSesiunii":"${Global.durataSesiunii}", "operator":"${Global.operator}"}';
+    }
+    String path = Global.url + numeServer + query;
+    if (_debug == true) {
+      window.alert(path);
+      print(path);
+    }
     // var response = await http.get(Uri.parse(path), headers: _headers);
     var response = await http.get(Uri.parse(path));
     if (response.statusCode == 200) {
       String rezultat = response.body;
-      //  window.alert(rezultat);
-      // print(rezultat);
+      //window.alert(rezultat);
+      //print(rezultat);
       return rezultat;
     }
     // The GET request failed. Handle the error.
@@ -80,9 +88,10 @@ class Loader {
     // window.alert(_js);
     //String _path = 'http://localhost/' + numeServer + '?x=' + _js;
     String _path = Global.url + numeServer + '?x=' + _js;
-    //print(_path);
-    //window.alert(_path);
-
+    if (_debug == true) {
+      print(_path);
+      window.alert(_path);
+    }
     // var response = await http.get(Uri.parse(path), headers: _headers);
     var response = await http.get(Uri.parse(_path));
     if (response.statusCode == 200) {

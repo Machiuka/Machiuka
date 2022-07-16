@@ -1,5 +1,6 @@
 import 'dart:html';
 import '../clase/load_detalii.dart';
+import 'formular_raportare.dart';
 import 'formular_meniu.dart';
 
 class LivrareMeniu {
@@ -12,6 +13,7 @@ class LivrareMeniu {
     Element _btnFacturi = querySelector('#btnFacturi') as Element;
     Element _btnAvize = querySelector('#btnAvize') as Element;
     Element _btnNir = querySelector('#btnNir') as Element;
+    Element _btnRaport = querySelector('#btnRaport') as Element;
     Element _btnBack = querySelector('#btnBack') as Element;
     Element _divLivrariNav = querySelector('#livrare_nav') as Element;
 
@@ -26,6 +28,14 @@ class LivrareMeniu {
     _btnNir.onClick.listen((e) {
       _divLivrariNav.remove();
       FormularMeniu.formularNir('NIR');
+    });
+    _btnRaport.onClick.listen((e) {
+      _divLivrariNav.remove();
+      bool intern = true;
+
+      intern = window.confirm("Raport livrari catre clienti? Ok, pt confirmare / Cancel pt livrari catre gestiuni");
+
+      FormularRaportare.formular(intern);
     });
 
     _btnBack.onClick.listen((e) {

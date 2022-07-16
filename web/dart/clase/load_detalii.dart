@@ -50,6 +50,76 @@ class LoadDetalii {
     });
   }
 
+  loadRaportare(String tabel, String numeServerPrimar, String dataInceput, String dataSfarsit, [String? partener, String? produs]) {
+    //cauta pe serverul primar ceea ce primeste din meniul cautare si afiseaza detaliile primite de pe serverul secundar
+    //de pe serverul primar primeste o lista clickabila si de pe cel secundar primeste un tabel cu detaliile elementului selectat din lista
+    //caut este partenerul
+    late final UListElement lista = querySelector('#listaDetalii') as UListElement;
+    FormElement formRaport = querySelector("#formRaport") as FormElement;
+    Loader loader = Loader();
+    String optiune = "";
+    if (produs == '' && partener == '') {
+      optiune = "gen";
+    } else if (produs == '') {
+      optiune = "cli";
+    } else if (partener == '') {
+      optiune = "pro";
+    }
+    loader
+        .cautaPeServer(
+            criteriu: partener!,
+            numeServer: numeServerPrimar,
+            optiune: optiune,
+            tabel: tabel,
+            dataInceput: dataInceput,
+            dataSfarsit: dataSfarsit,
+            produs: produs)
+        .then((rezultat) async {
+      //  window.alert(rezultat);
+      final _json = json.decode(rezultat);
+
+      //       FormElement formDetalii =querySelector("#formDetalii") as FormElement;
+
+      incarcFormular('html/form_tabel.html');
+      await Future.delayed(const Duration(milliseconds: 50));
+      Tabelare tabelul = Tabelare();
+      FormElement formTabel = querySelector("#formTabel") as FormElement;
+      Element titluTabel = querySelector("#titluTabel") as Element;
+      Element btnInapoi = querySelector("#btnCCC") as Element;
+      formRaport.replaceWith(
+          formTabel); //inlocuie formDetalii cu formTabel. Proprietatea hidden nu a functionat, iar remove() pierde metodele atasate butoanelor
+      tabelul.adauga(_json, 'tabelDetalii', 0);
+      btnInapoi.onClick.listen((event) {
+        formTabel.replaceWith(formRaport);
+      });
+      dataInceput = _convertData(dataInceput); // Converteste din yyyy-mm-dd in dd.mm.yyyy
+      dataSfarsit = _convertData(dataSfarsit);
+
+      if (partener == "") {
+        titluTabel.innerHtml = "RAPORT LIVRARI ${dataInceput}  -  ${dataSfarsit}";
+      } else {
+        titluTabel.innerHtml = "RAPORT LIVRARI $partener perioada ${dataInceput}  -  ${dataSfarsit}";
+      }
+    });
+  }
+
+  String _convertData(String dataC) {
+    String dataCon = "";
+    String luna = "";
+    String ziua = "";
+    String anul = "";
+    int lungime = dataC.length;
+    ziua = dataC.substring(lungime - 2);
+    dataC = dataC.substring(0, lungime - 3);
+    lungime = dataC.length;
+    luna = dataC.substring(lungime - 2);
+    dataC = dataC.substring(0, lungime - 3);
+    anul = dataC;
+    dataCon = ziua + "." + luna + "." + anul;
+
+    return dataCon;
+  }
+
   loadInterogare(String caut, String tabel, String numeServerPrimar, [String numeServerSecundar = '']) {
     //cauta pe serverul primar ceea ce primeste din meniul cautare si afiseaza detaliile primite de pe serverul secundar
     //de pe serverul primar primeste o lista clickabila si de pe cel secundar primeste un tabel cu detaliile elementului selectat din lista
@@ -70,8 +140,12 @@ class LoadDetalii {
         LIElement elem = LIElement();
         lista.children.add(elem..text = _json[i]['denumire']);
         elem.onClick.listen((e) {
-          String crit = elem.innerHtml.toString();
-          loader.cautaPeServer(criteriu: crit, tabel: tabel, numeServer: numeServerPrimar, optiune: "r").then((value) async {
+          // String crit = elem.innerHtml.toString();
+          String crit = _json[i]['cod_doc'];
+          String den = _json[i]['denumire'];
+//Pe serverCautSterg reteta am adaugat optiunea r1 iul.2022
+          //     loader.cautaPeServer(criteriu: crit, tabel: tabel, numeServer: numeServerPrimar, optiune: "r").then((value) async {
+          loader.cautaPeServer(criteriu: crit, tabel: tabel, numeServer: numeServerPrimar, optiune: "r1").then((value) async {
             value = value.replaceAll("[", "");
             value = value.replaceAll("]", "");
             //    window.alert('Value reteta este $value');
@@ -93,7 +167,7 @@ class LoadDetalii {
               formTabel.replaceWith(formDetalii);
             });
 
-            titluTabel.innerHtml = "Detalii pt $crit";
+            titluTabel.innerHtml = "Detalii pt $den";
             //   window.alert(titluTabel.innerHtml);
 
             //window.alert(_js.toString());

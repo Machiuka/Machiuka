@@ -30,8 +30,8 @@ class ActualizareReteta {
         LIElement elem = LIElement();
         lista.children.add(elem..text = _json[i]['denumire']);
         elem.onClick.listen((e) {
-          // String crit = _json[i]['cod_doc'];
-          String crit = _json[i]['denumire'];
+          String crit = _json[i]['cod_doc'];
+          //  String crit = _json[i]['denumire'];
           kk.cautaPeServer(criteriu: crit, tabel: tabel, numeServer: numeServer, optiune: "u").then((value) async {
             value = value.replaceAll("[", "");
             value = value.replaceAll("]", "");
