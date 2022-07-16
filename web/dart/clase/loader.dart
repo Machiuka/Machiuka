@@ -42,8 +42,10 @@ class Loader {
     var response = await http.get(Uri.parse(path));
     if (response.statusCode == 200) {
       String rezultat = response.body;
-      //window.alert(rezultat);
-      //print(rezultat);
+      if (_debug == true) {
+        window.alert(rezultat);
+        print(rezultat);
+      }
       return rezultat;
     }
     // The GET request failed. Handle the error.
@@ -88,6 +90,7 @@ class Loader {
     // window.alert(_js);
     //String _path = 'http://localhost/' + numeServer + '?x=' + _js;
     String _path = Global.url + numeServer + '?x=' + _js;
+    print(_path);
     if (_debug == true) {
       print(_path);
       window.alert(_path);

@@ -115,7 +115,8 @@ class LoadFactura {
             UBFClient.analitic = _json[i]['analitic'];
             UBFClient.masina = _json[i]['masina'];
             UBFClient.listaPret = _json[i]['lista_pret'];
-            UBFClient.adaos = int.parse(_json[i]['adaos']);
+            UBFClient.adaos = _json[i]['adaos'] != null ? int.parse(_json[i]['adaos']) : 0;
+
             if (tipDoc == 'fe') {
               UBFClient.discount = int.parse(_json[i]['discount']);
               UBFClient.tPlata = int.parse(_json[i]['t_plata']);
@@ -238,8 +239,8 @@ class LoadFactura {
           rezultat = rezultat.replaceAll("\\", "");
           rezultat = rezultat.replaceAll('"{', '{');
           rezultat = rezultat.replaceAll('}"', '}');
-          //print(rezultat);
-          //window.alert("Raspuns server: " + rezultat);
+          //    print(rezultat);
+          //   window.alert("Raspuns server: " + rezultat);
           final _json = json.decode(rezultat);
 
           Invoice.afisFactura(tipDoc, _json);
