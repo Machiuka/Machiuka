@@ -45,6 +45,7 @@ class FormFactura {
     if (tipDoc == 'av') {
       _isFactura.hidden = true; //la aviz  am totusi nevoie de ce este in div isFactura din form_factura.html
       _nrFact.defaultValue = (Global.ultimNumar['nrAviz']! + 1).toString();
+
       _titluFactura.innerHtml = 'AVIZ EXPEDITIE';
     }
 
@@ -65,6 +66,7 @@ class FormFactura {
       }
       if (tipDoc == 'av') {
         Global.ultimNumar['nrAviz'] = UBFFactura.nrFact!;
+        UBFFactura.nrNir = (Global.ultimNumar['nrNir']! + 1).toString();
       }
       UBFClient.nrLot = _nrLot.value;
       UBFClient.delegat = _delegat.value;

@@ -23,6 +23,7 @@ class UBFFactura {
   static String operator = Global.operator;
   static String activitate = '';
   static String listaPret = '';
+  static String nrNir = '';
 //Sectiunea Vanzator
 
   Map<String, String> dateVanzator() {
@@ -74,6 +75,7 @@ class UBFFactura {
         'operator': operator,
         'activitate': activitate,
         'continut': articoleFactura,
-        'lista_pret': listaPret
+        'lista_pret': listaPret,
+        'nr_nir': nrNir
       };
 }

@@ -24,6 +24,7 @@ class UltimNumar {
 
         Global.ultimNumar['nrFactura'] = double.parse(_json['nrFactura']);
         Global.ultimNumar['nrAviz'] = double.parse(_json['nrAviz']);
+        Global.ultimNumar['nrNir'] = double.parse(_json['nrNir']);
         Global.ultimNumar['nrReteta'] = int.parse(_json['nrReteta']);
         Global.ultimNumar['nrClient'] = int.parse(_json['nrClient']);
         Global.ultimNumar['nrProdus'] = int.parse(_json['nrProdus']);

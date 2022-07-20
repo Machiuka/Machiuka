@@ -25,6 +25,7 @@ class Global {
   static Map<String, num> ultimNumar = {
     'nrFactura': 100,
     'nrAviz': 200,
+    'nrNir': 100,
     'nrProdus': 9900,
     'nrReteta': 9900,
     'nrClient': 1150,
@@ -42,6 +43,7 @@ class Global {
   static String codActivitate = '';
   static String denActivitate = '';
   static String _url() {
+    //Permite utilizarea aplicatiei de pe orice calculator din reteaua locala. Se introduce IP-ul calculatorului unde este instalata in fisierul index.html
     Element _adresa = querySelector("#ipAddress") as Element;
     String _ip = "";
     _ip = "http://" + _adresa.innerHtml.toString() + "/server/";

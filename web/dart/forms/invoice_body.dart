@@ -272,6 +272,7 @@ class InvoiceBody {
         UBFFactura.nrFact = int.parse(_json['cod_doc']);
         UBFFactura.adaos = _json['adaos'] != null ? int.parse(_json['adaos']) : 0;
         UBFFactura.dataFact = _json['data_doc'];
+        UBFFactura.nrNir == _json['nr_NIR'];
         Global.operator = local.cauta('utilizator')!;
         divFactura.remove();
         if (tipDoc == "fe") {
