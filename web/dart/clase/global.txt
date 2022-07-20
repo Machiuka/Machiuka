@@ -1,5 +1,5 @@
 import 'optiune.dart';
-import 'dart:html';
+//import 'dart:io';
 
 class Global {
   static Optiune optiune = Optiune as Optiune;
@@ -17,8 +17,8 @@ class Global {
   static double zecimale = 0.1; //rotunjire la total factura
   static String codOperator = "xxx"; //A01...A04
   static String continut = ''; //continutul retetei, facturii, avizului...sub forma '102^2|
-  static String url = _url();
-//  static String url = "http://localhost/server/";
+  //static String url = _url();
+  static String url = 'http://localhost/server/';
 
   //ultimNumar preia la inceput ultimele numere de pe server pentru fiecare categorie (factura, aviz, etc) pt a avea numere/coduri unice
 
@@ -41,11 +41,4 @@ class Global {
   static String articoleFactura = ''; //este un sir de tip Json
   static String codActivitate = '';
   static String denActivitate = '';
-  static String _url() {
-    Element _adresa = querySelector("#ipAddress") as Element;
-    String _ip = "";
-    _ip = "http://" + _adresa.innerHtml.toString() + "/server/";
-
-    return _ip;
-  }
 }
