@@ -58,7 +58,7 @@ class FormClient {
       UBFClient.analitic = _analitic.value;
       UBFClient.grupa = _grupaClient.value;
       UBFClient.numeAgent = _numeAgent.value;
-      UBFClient.listaPret = _listaPret.value.toString();
+      UBFClient.listaPret = _listaPret.value == 0 ? "" : _listaPret.value.toString();
 
       ld.loadIncarcareClient('tbl_parteneri', 'serverAdaugClient', 'c', client);
     });

@@ -30,7 +30,7 @@ class LoadClient {
       tabel: tabel,
     )
         .then((rezultat) async {
-      // window.alert(rezultat);
+      //window.alert(rezultat);
       final _json = json.decode(rezultat);
       //window.alert(_json['denumire']);
       lista.children.clear();
@@ -60,6 +60,7 @@ class LoadClient {
             UBFClient.grupa = _json[i]['grupa'];
             UBFClient.masina = _json[i]['masina'];
             UBFClient.numeAgent = _json[i]['den_agent'];
+            UBFClient.listaPret = _json[i]['lista_pret'];
 
             if (crud == 'd') {
               bool stergere = window.confirm('OK pt a confirma stergerea, cancel pt anulare!');
