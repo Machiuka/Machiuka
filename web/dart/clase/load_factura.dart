@@ -164,20 +164,15 @@ class LoadFactura {
       lista.children.clear();
       for (int i = 0; i < _json.length; i++) {
         LIElement elem = LIElement();
-        if (tabel.contains('facturi') || tabel.contains('avize')) {
+
+        String _lung = _json[i]['nr_nir'].toString();
+        if (tipDoc == "nir" && _lung.length > 1) {
           lista.children.add(elem..text = _json[i]['cod_doc'] + "/" + _json[i]['data_doc'] + " (" + _json[i]['date_partener']['denumire'] + ")");
-        } else {
-          lista.children.add(elem
-            ..text = "Aviz " +
-                _json[i]['cod_doc'] +
-                "/NIR " +
-                _json[i]['nr_nir'] +
-                "/" +
-                _json[i]['data_doc'] +
-                " (" +
-                _json[i]['date_partener']['denumire'] +
-                ")");
         }
+        if (tipDoc != "nir") {
+          lista.children.add(elem..text = _json[i]['cod_doc'] + "/" + _json[i]['data_doc'] + " (" + _json[i]['date_partener']['denumire'] + ")");
+        }
+
         if (_json[i]['data_doc'] == "Nu s-au gasit rezultate") {
           await Future.delayed(const Duration(seconds: 1));
           _formDetalii.remove();

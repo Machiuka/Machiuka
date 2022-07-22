@@ -68,7 +68,13 @@ class FormFactura {
 
       if (tipDoc == 'av') {
         Global.ultimNumar['nrAviz'] = UBFFactura.nrFact!;
-        UBFFactura.nrNir = (Global.ultimNumar['nrNir']! + 1).toString();
+        String _client = UBFClient.denumire!.substring(0, 4).toLowerCase();
+        //window.alert("CLIENT= " + _client);
+        if (_client == "gest") {
+          UBFFactura.nrNir = (Global.ultimNumar['nrNir']! + 1).toString();
+        } else {
+          UBFFactura.nrNir = "";
+        }
       }
       UBFClient.nrLot = _nrLot.value;
       UBFClient.delegat = _delegat.value;
