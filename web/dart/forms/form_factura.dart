@@ -72,8 +72,10 @@ class FormFactura {
         //window.alert("CLIENT= " + _client);
         if (_client == "gest") {
           UBFFactura.nrNir = (Global.ultimNumar['nrNir']! + 1).toString();
+          UBFFactura.facturabil = 0;
         } else {
           UBFFactura.nrNir = "";
+          UBFFactura.facturabil = 1;
         }
       }
       UBFClient.nrLot = _nrLot.value;

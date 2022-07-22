@@ -24,6 +24,7 @@ class UBFFactura {
   static String activitate = '';
   static String listaPret = '';
   static String nrNir = '';
+  static int facturabil = 0; //0 - nefacturabil, 1- nefacturat, 2-facturat. Avize catre terti
 //Sectiunea Vanzator
 
   Map<String, String> dateVanzator() {
@@ -76,6 +77,7 @@ class UBFFactura {
         'activitate': activitate,
         'continut': articoleFactura,
         'lista_pret': listaPret,
-        'nr_nir': nrNir
+        'nr_nir': nrNir,
+        'facturabil': facturabil
       };
 }

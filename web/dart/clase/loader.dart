@@ -16,6 +16,43 @@ class Loader {
     "Accept": "application/json",
   };
 
+  Future<String> aviz2Fact(
+      {required String nrAviz,
+      required String dataAviz,
+      required String tabel,
+      required String numeServer,
+      required String codDoc,
+      required String dataDoc,
+      required String optiune}) async {
+    numeServer = numeServer + ".php";
+    String query = "";
+
+    query = '?x={"tipDoc":"$nrAviz", "tabel":"$tabel", "optiune":"$optiune", "codDoc":"$codDoc", "dataDoc":"$dataDoc", "dataAviz":"$dataAviz"}';
+
+    String path = Global.url + numeServer + query;
+    //window.alert(path);
+    //print(path);
+    if (_debug == true) {
+      window.alert(path);
+      print(path);
+    }
+    // var response = await http.get(Uri.parse(path), headers: _headers);
+    var response = await http.get(Uri.parse(path));
+    if (response.statusCode == 200) {
+      String rezultat = response.body;
+      if (_debug == true) {
+        window.alert(rezultat);
+        print(rezultat);
+      }
+      return rezultat;
+    }
+    // The GET request failed. Handle the error.
+    else {
+      window.alert("Couldn't open $path");
+      return ("Couldn't open $path");
+    }
+  }
+
   Future<String> cautaPeServer(
       {required String criteriu,
       required String tabel,

@@ -43,12 +43,12 @@ class CautareFactura {
           window.location.reload(); //echivalent cu refresh pagina
         }
       } else if (titlu == 'NIR') {
-        if (caut != null) {
-          _formCautare.remove();
-          lf.loadInterogare("nir", caut, tabelA, "serverFactura");
-        } else {
-          window.location.reload(); //echivalent cu refresh pagina
-        }
+        _formCautare.remove();
+        lf.loadInterogare("nir", caut!, tabelA, "serverFactura");
+      } else {
+        FormElement _formCautare = querySelector("#formCautare") as FormElement;
+        _formCautare.remove();
+        lf.loadInterogare("aviz2fact", caut!, tabelA, "serverAviz2Fact");
       }
     });
   }

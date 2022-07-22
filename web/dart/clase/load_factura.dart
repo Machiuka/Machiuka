@@ -6,11 +6,13 @@ import 'ubf_factura.dart';
 import 'ubf_client.dart';
 import 'load_detalii.dart';
 import 'detalii_factura.dart';
+import 'global.dart';
 
 import '../forms/invoice.dart';
 import '../forms/invoice_body.dart';
 import '../forms/nir.dart';
 import '../forms/form_factura.dart';
+import 'aviz_fact .dart';
 
 class LoadFactura {
   Future loadArticol(String tipDoc, String caut, String tabel, String numeServer) async {
@@ -139,7 +141,6 @@ class LoadFactura {
     FormElement _formDetalii = querySelector("#formDetalii") as FormElement;
     DivElement _divButoane = querySelector('.butoane') as DivElement;
     _divButoane.hidden = true;
-    //_formCautare.replaceWith(_formDetalii);
 
     late final UListElement lista = querySelector('#listaDetalii') as UListElement;
     Loader kk = Loader();
@@ -187,6 +188,13 @@ class LoadFactura {
           _formDetalii.remove();
           if (tipDoc == "nir") {
             NIR.afisNir(tipDoc, _json[i]);
+          } else if (tipDoc == "aviz2fact") {
+            // AICI INTRODUC UN ELSE IF PENTRU AVIZ2FACT
+            tipDoc = _json[i]['cod_doc']; //nr_aviz
+            String dataAviz = _json[i]['data_doc'].toString();
+
+            String nrFactura = (Global.ultimNumar['nrFactura']! + 1).toString();
+            AvizFact.loadAvizFact(tipDoc, tabel, nrFactura, dataAviz);
           } else {
             if (modificare == true) {
               InvoiceBody.afisFactura(tipDoc, _json[i]);

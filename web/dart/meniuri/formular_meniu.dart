@@ -31,6 +31,28 @@ class FormularMeniu {
     });
   }
 
+  static void formularAviz2Fact(String titlu) async {
+    Element _divTopNav = querySelector('#top_nav') as Element;
+    _divTopNav.remove();
+    LoadDetalii.incarcFormular('html/form_detalii.html');
+    await Future.delayed(const Duration(milliseconds: 50));
+
+    Element _btnCautare = querySelector('#btnCautare') as Element;
+    Element _btnAdaugare = querySelector('#btnAdaugare') as Element;
+    Element _btnModificare = querySelector('#btnModificare') as Element;
+    Element _divModificare = querySelector('#divModificare') as Element;
+    Element _btnStergere = querySelector('#btnStergere') as Element;
+    Element _titluH1 = querySelector('#titluDetalii') as Element;
+
+    _titluH1.innerHtml = "Generare Factura pe baza Aviz Expeditie";
+    _btnAdaugare.hidden = true;
+    _btnModificare.hidden = true;
+    _btnStergere.hidden = true;
+    _btnCautare.onClick.listen((e) {
+      CautareFactura.cautareFactura(titlu);
+    });
+  }
+
   static void formularMeniu(String titlu) async {
     LocalStorage local = LocalStorage();
     Element _divTopNav = querySelector('#top_nav') as Element;
