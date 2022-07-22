@@ -51,12 +51,6 @@ class CautareElement {
 
           ld.loadElement(caut!, "tbl_mp", "serverCautare");
         } else {
-          /*
-              Global.continut = '';
-          LoadDetalii.incarcFormular('html/form_document.html'); //Este cerut la raspuns_tabel
-          await Future.delayed(const Duration(milliseconds: 50));
-          //   window.alert(Global.continut);
-        */
           _formCautare.remove();
 
           ld.loadIncarcareDoc("tbl_produse", "serverAdaugReteta", "rt", UBFDocument());
@@ -76,21 +70,8 @@ class CautareElement {
           //calculeaza discount
 
           //fiindca deja am incarcat discounturile din invoice_body.dart cand operatie este true adica actualizare
-
           if (UBFClient.discount! > 0) {
-            int? discount = UBFClient.discount;
-
-            UBFFactura.discount = discount!;
-            UBFFactura.valDiscount = UBFFactura.totalFactFaraTva * discount / 100;
-
-            UBFFactura.totalFactFaraTva = UBFFactura.totalFactFaraTva - UBFFactura.valDiscount;
-            UBFFactura.tvaDiscount = UBFFactura.tva19 * discount / 100;
-            UBFFactura.tva19 = UBFFactura.tva19 - UBFFactura.tvaDiscount;
-            UBFFactura.tvaDiscount = UBFFactura.tva9 * discount / 100;
-            UBFFactura.tva9 = UBFFactura.tva9 - UBFFactura.tvaDiscount;
-            UBFFactura.tvaDiscount = UBFFactura.tva * discount / 100;
-            UBFFactura.tva = UBFFactura.tva - UBFFactura.tvaDiscount;
-            UBFFactura.totalFactura = UBFFactura.totalFactFaraTva + UBFFactura.tva;
+            _discount('f');
           }
           //   window.alert("Factura fara tva=" + UBFFactura.totalFactFaraTva.toString());
 //Rotunjeste totalul facturii, adica scapa de zecimalele in plus
@@ -122,7 +103,10 @@ class CautareElement {
           lf.loadArticol('av', caut!, "tbl_produse", "serverCautare");
         } else {
           _formCautare.remove();
-
+          UBFClient.discount = UBFFactura.discount;
+          if (UBFClient.discount! > 0) {
+            _discount('a');
+          }
           if (Global.operatie == false) {
             lf.loadIncarcareFact(tabelA, "serverFactura", "av", UBFFactura(), "c");
           } else {
@@ -146,5 +130,43 @@ class CautareElement {
     _btnOK.onClick.listen((e) async {
       _clickFunction();
     });
+  }
+
+  static void _discount(String tipDocument) {
+    if (tipDocument == 'f') {
+      int? discount = UBFClient.discount;
+
+      UBFFactura.discount = discount!;
+
+      UBFFactura.valDiscount = UBFFactura.totalFactFaraTva * discount / 100;
+
+      UBFFactura.totalFactFaraTva = UBFFactura.totalFactFaraTva - UBFFactura.valDiscount;
+      UBFFactura.tvaDiscount = UBFFactura.tva19 * discount / 100;
+      UBFFactura.tva19 = UBFFactura.tva19 - UBFFactura.tvaDiscount;
+      UBFFactura.tvaDiscount = UBFFactura.tva9 * discount / 100;
+      UBFFactura.tva9 = UBFFactura.tva9 - UBFFactura.tvaDiscount;
+      UBFFactura.tvaDiscount = UBFFactura.tva * discount / 100;
+      UBFFactura.tva = UBFFactura.tva - UBFFactura.tvaDiscount;
+      UBFFactura.totalFactura = UBFFactura.totalFactFaraTva + UBFFactura.tva;
+    } else {
+      int? discount = UBFClient.discount;
+
+      UBFFactura.discount = discount!;
+      //  window.alert("Total factura inainte de calcule: " + UBFFactura.totalFactura.toString());
+      if (Global.operatie == false) {
+        UBFFactura.totalFactura = UBFFactura.totalFactFaraTva;
+      }
+      UBFFactura.valDiscount = UBFFactura.totalFactura * discount / 100;
+      // window.alert("Total aviz = " + UBFFactura.totalFactura.toString() + " Total discount = " + UBFFactura.valDiscount.toString());
+      UBFFactura.totalFactura = UBFFactura.totalFactura - UBFFactura.valDiscount;
+
+      UBFFactura.tvaDiscount = UBFFactura.tva19 * discount / 100;
+      UBFFactura.tva19 = UBFFactura.tva19 - UBFFactura.tvaDiscount;
+      UBFFactura.tvaDiscount = UBFFactura.tva9 * discount / 100;
+      UBFFactura.tva9 = UBFFactura.tva9 - UBFFactura.tvaDiscount;
+      UBFFactura.tvaDiscount = UBFFactura.tva * discount / 100;
+      UBFFactura.tva = UBFFactura.tva - UBFFactura.tvaDiscount;
+      UBFFactura.totalFactFaraTva = UBFFactura.totalFactura - UBFFactura.tva;
+    }
   }
 }

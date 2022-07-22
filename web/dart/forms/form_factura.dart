@@ -14,7 +14,7 @@ class FormFactura {
     LoadDetalii.incarcFormular(formular);
     await Future.delayed(const Duration(milliseconds: 50));
     FormElement _formFactura = querySelector("#formFactura") as FormElement;
-    DivElement _isFactura = querySelector('#isFactura') as DivElement;
+    //DivElement _isFactura = querySelector('#isFactura') as DivElement;
     Element _titluFactura = querySelector('#titluFactura') as Element;
 
     Element _btnAnulare = querySelector("#btnAnulareF") as Element;
@@ -35,15 +35,14 @@ class FormFactura {
     _ciPol.defaultValue = UBFClient.ciPol;
     _masina.defaultValue = UBFClient.masina;
     _adaos.defaultValue = UBFClient.adaos.toString();
-
+    _discount.defaultValue = UBFClient.discount.toString();
+    _tPlata.defaultValue = UBFClient.tPlata.toString();
     if (tipDoc == 'fe') {
-      _discount.defaultValue = UBFClient.discount.toString();
-      _tPlata.defaultValue = UBFClient.tPlata.toString();
       _nrFact.defaultValue = (Global.ultimNumar['nrFactura']! + 1).toString();
       _titluFactura.innerHtml = 'FACTURA FISCALA';
     }
     if (tipDoc == 'av') {
-      _isFactura.hidden = true; //la aviz  am totusi nevoie de ce este in div isFactura din form_factura.html
+      //  _isFactura.hidden = true; //la aviz  am totusi nevoie de ce este in div isFactura din form_factura.html
       _nrFact.defaultValue = (Global.ultimNumar['nrAviz']! + 1).toString();
 
       _titluFactura.innerHtml = 'AVIZ EXPEDITIE';
@@ -57,13 +56,16 @@ class FormFactura {
       UBFFactura.adaos = int.parse(_adaos.value!);
       UBFClient.adaos = int.parse(_adaos.value!);
       if (tipDoc == 'fe') {
-        UBFClient.discount = int.parse(_discount.value!);
-        UBFClient.tPlata = int.parse(_tPlata.value!);
         Global.ultimNumar['nrFactura'] = UBFFactura.nrFact!;
-        UBFFactura.discount = int.parse(_discount.value!);
-        UBFFactura.termenPlata = int.parse(_tPlata.value!);
-        UBFFactura.achitata = UBFFactura.termenPlata > 0 ? 0 : 1;
       }
+
+      UBFClient.discount = int.parse(_discount.value!);
+      UBFClient.tPlata = int.parse(_tPlata.value!);
+
+      UBFFactura.discount = int.parse(_discount.value!);
+      UBFFactura.termenPlata = int.parse(_tPlata.value!);
+      UBFFactura.achitata = UBFFactura.termenPlata > 0 ? 0 : 1;
+
       if (tipDoc == 'av') {
         Global.ultimNumar['nrAviz'] = UBFFactura.nrFact!;
         UBFFactura.nrNir = (Global.ultimNumar['nrNir']! + 1).toString();

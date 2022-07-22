@@ -71,7 +71,7 @@ class Invoice {
       DateTime dataF = DateTime.parse(_json['data_doc']);
       String dataFs = formatareData.format(dataF);
 
-      if (tipDoc == 'fe') {
+      if (tipDoc == 'fe' || tipDoc == 'av') {
         int termenPlata = int.parse(_json['termen_plata']);
         DateTime dataP = dataF.add(new Duration(days: termenPlata));
         String dataFp = formatareData.format(dataP);
@@ -109,11 +109,10 @@ class Invoice {
         totalGeneral.innerHtml = _json['total_doc'];
         totalTVA9.innerHtml = _json['tva_9'];
         totalTVA19.innerHtml = _json['tva_19'];
-        valDiscount = double.parse(_json['val_discount']);
-        tvaDiscount = double.parse(_json['tva_discount']);
-        discount = _json['discount'];
       }
-
+      valDiscount = double.parse(_json['val_discount']);
+      tvaDiscount = double.parse(_json['tva_discount']);
+      discount = _json['discount'];
       //Incarc zona client
       clientName.innerHtml = _json['date_partener']['denumire'];
       clientAddress.innerHtml = _json['date_partener']['adresa'];
@@ -209,7 +208,7 @@ class Invoice {
         j = i + 1;
       }
       j = j + 1;
-      if (tipDoc == 'fe' && int.parse(discount) > 0) {
+      if (int.parse(discount) > 0) {
         row = tabel.insertRow(-1); //insereaza rand in tabel
 
         cell = row.insertCell(0);
@@ -228,18 +227,27 @@ class Invoice {
         cell.text = ' ';
         cell = row.insertCell(4);
         cell.text = ' ';
-        cell = row.insertCell(5);
-        cell.text = '';
-        cell = row.insertCell(6);
-        cell.text = '-' + valDiscount.toStringAsFixed(2);
-        cell.id = 'valDisco';
-        rule = '#valDisco {text-align:right;}';
-        styleSheet.insertRule(rule, 0);
-        cell = row.insertCell(7);
-        cell.text = '-' + tvaDiscount.toStringAsFixed(2);
-        cell.id = 'tvaDisco';
-        rule = '#tvaDisco {text-align:right;}';
-        styleSheet.insertRule(rule, 0);
+        if (tipDoc == 'fe') {
+          cell = row.insertCell(5);
+          cell.text = '';
+          cell = row.insertCell(6);
+          cell.text = '-' + valDiscount.toStringAsFixed(2);
+          cell.id = 'valDisco';
+          rule = '#valDisco {text-align:right;}';
+
+          styleSheet.insertRule(rule, 0);
+          cell = row.insertCell(7);
+          cell.text = '-' + tvaDiscount.toStringAsFixed(2);
+          cell.id = 'tvaDisco';
+          rule = '#tvaDisco {text-align:right;}';
+          styleSheet.insertRule(rule, 0);
+        } else {
+          cell = row.insertCell(5);
+          cell.text = '-' + valDiscount.toStringAsFixed(2);
+          cell.id = 'valDisco';
+          rule = '#valDisco {text-align:right;}';
+          styleSheet.insertRule(rule, 0);
+        }
       }
     }
   }

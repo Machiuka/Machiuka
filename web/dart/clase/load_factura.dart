@@ -117,10 +117,8 @@ class LoadFactura {
             UBFClient.listaPret = _json[i]['lista_pret'];
             UBFClient.adaos = _json[i]['adaos'] != null ? int.parse(_json[i]['adaos']) : 0;
 
-            if (tipDoc == 'fe') {
-              UBFClient.discount = int.parse(_json[i]['discount']);
-              UBFClient.tPlata = int.parse(_json[i]['t_plata']);
-            }
+            UBFClient.discount = int.parse(_json[i]['discount']);
+            UBFClient.tPlata = int.parse(_json[i]['t_plata']);
             //Am stabilit clientul acum cautam articolele din factura
             _formDetalii.remove();
 

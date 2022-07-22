@@ -67,6 +67,7 @@ class DetaliiFactura {
       UBFFactura.totalFactura = UBFFactura.totalFactura + valCuTva;
       UBFFactura.tva = UBFFactura.tva + tva;
       //window.alert("valoare fara tva=" + val.toString() + " Valoare cu tva=" + valCuTva.toString() + " tva=" + tva.toString());
+      //  window.alert("Total valoare fara tva=" +          UBFFactura.totalFactFaraTva.toString() +          " Total Valoare cu tva=" +          UBFFactura.totalFactura.toString() +          " Total tva=" +          UBFFactura.tva.toString());
 
       if (ctva == 19) {
         UBFFactura.tva19 = UBFFactura.tva19 + tva;
