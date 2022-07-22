@@ -97,8 +97,14 @@ class Invoice {
       // window.alert('Nume vanzator ' + _json['date_firma']['numeVanzator']);
 
       dataDoc1.innerHtml = dataFs;
-      dataDoc2.innerHtml = dataFs;
-
+      if (_json['data_aviz'] != null) {
+        DateTime dataA = DateTime.parse(_json['data_aviz']);
+        String dataFa = formatareData.format(dataA);
+        String nrAviz = _json['nr_aviz'].toString();
+        dataDoc2.innerHtml = dataFa + " cu avizul nr." + nrAviz;
+      } else {
+        dataDoc2.innerHtml = dataFs;
+      }
       totalFact.innerHtml = cuPret == true ? _json['total_doc'] : '';
       double valDiscount = 0;
       double tvaDiscount = 0;

@@ -1,0 +1,138 @@
+<div id="divFactura">
+<div id="header" width="90%">
+  <h4  align="center"><label id="webpage"></label></h4>
+</div>
+<div id="container">
+
+
+  <table class="headerTable">
+    <tbody>
+      <tr>
+        <td style="font-size:12px;" width="30%" valign="top"><strong>VANZATOR:</strong><br>
+  
+    <br>
+   <label id="company_name"></label><br>
+    <label id="company_address"></label> <br>
+    <label id="company_cui"></label> <br>
+    <label id="company_cif"></label><br>
+    <label id="company_tel"></label>  <br>
+    <label id="company_email"></label><br>
+    <label class="textMediu" id="company_banca"></label><br>
+    <label class="textMediu" id="company_trezorerie"></label></td>
+        <td width="40%" cellpadding="10">
+          <div align="center"  ><h1 id="invoice-title-number">FACTURA &nbsp;FISCALA</h1></div>
+          <div align="center"><h2>Nr : <label id="cod_doc"></label> &nbsp;&nbsp; din data de <span class="dataDoc1"></span></h2>
+              </div>
+            
+        </td>
+        <td style="font-size:12px;" width="30%" valign="top" align="left"><strong>CUMPARATOR:</strong><br>
+          <br>
+          <label id="client_name"></label> <br>
+          <label id="client_address"></label> <br>
+          <label id="client_cui"></label><br>
+          <label id="client_cif"></label><br>
+   
+      </tr>
+      <tr>
+        <td  colspan="2"><span id="textMic">Conform
+          Reg.UE 2016/679, art.6, prelucrăm datele dvs.(nume,
+          tel.,adresa, CUI./CNP, etc.în scopul exclusiv al livrării
+          bunurilor și serviciilor comandate de dvs. Acestea nu sunt
+          puse la dispozitia terților. Puteți solicita oricând
+          rectificarea lor.</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+<div>
+<table class="customertable" border="1">
+  <thead>
+    <tr >
+      <th class="shortcolumn">Nr.<br>crt.</th>
+      <th class="longcolumn">Denumire produs</th>
+      <th class="shortcolumn">U.M.</th>
+      <th class="shortcolumn">Cota TVA<br>(%)</th>
+      <th class="shortcolumn" >Canti-tate</th>
+      <th class="numbercolumn">Pret Unitar<br>(lei)</th>
+      <th class="numbercolumn">Valoare<br>(lei)</th>
+      <th class="numbercolumn"  width= "50px">T.V.A.<br>(lei)</th>
+    </tr>
+  </thead>
+<tbody id="tableBody">  
+
+</tbody>
+</table>
+<table width="50%" cellspacing="0" cellpadding="2" border="0">
+  <tbody>
+    
+    <tr>
+   <td></td> <td></td> <td></td>  <td style="font-size:12px;" align="right">TOTAL fara TVA:</td>
+      <td style="font-size:12px;" align="left"><span id="totalFact"></span></td>
+    </tr>
+    <tr>
+     <td></td> <td></td> <td></td>   <td style="font-size:12px;" align="right">TVA(9.00%):</td>
+      <td style="font-size:12px;" align="left"><span id="totalTVA9"></span></td>
+    </tr>
+    <tr>
+      <td></td><td></td> <td></td>  <td style="font-size:12px;" align="right">TVA(19.00%):</td>
+      <td style="font-size:12px;" align="left"><span id="totalTVA19"></span></td>
+    </tr>
+    <tr>
+      <td></td><td></td> <td></td>  <td style="font-size:12px;" align="right"><b>TOTAL DE PLATA:</b></td>
+      <td style="font-size:12px;" align="left"><b><span id="totalGeneral"></span></b></td>
+    </tr>
+    
+  </tbody>
+</table>
+</div>
+<table width="100%" height="50">
+  <tbody>
+    <tr>
+      <td><br>
+        <br>
+        <span class="textMic" text-align="left">Factura valabilă fără semnatură şi ştampilă cf. art. 319
+          alin 29 din Legea nr. 227/2015 privind Codul fiscal.</span></td>
+          <td><br>
+            <br>
+            <span class="textMic" id="labo" text-align="left">Produsele fac parte din lotul nr.<span id="nrLot">81</span> si corespund SF1/2012. Orice reclamatie va fi insotita de nr.lotului.</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="footTable" border="1">
+  <tbody>
+    <tr>
+      <td style="border-top:double medium #CCCCCC;font-size:12px;" width="33%"
+        valign="top"><span>Delegat: </span><span id="delegat">Ionescu
+            Mihai</span><br>
+          CI delegat: <span id="ciDelegat">AZ230123</span>, emis de <span id="ciPol"></span><br>
+          Mijloc de transport: <span id="nrAuto">AG22-XAD</span><br>
+        </b> </td>
+      <td style="border-top:double medium #CCCCCC; font-size:12px;"
+        width="33%" valign="top" align="center">Expedierea s-a
+        efectuat în prezența noastră la data de:<span class="dataDoc2"> 21.12.2021</span><br>
+        <br>
+        <br>
+      </td>
+      <td style="border-top:double medium #CCCCCC;font-size:12px;" width="20%"
+        valign="top" align="left">Semnăturile: </td>
+    </tr>
+  </tbody>
+</table >
+<table class="footTable">
+<tbody>
+  <tr>
+    <td style="border-top:double medium #CCCCCC;font-size:9px;"><span id="textMic">Prezentul
+      document constituie contract în forma simplificată, în sensul
+      art.1166 Cod Civil. Părțile contractante, respectiv Vânzătorul și
+      Cumpărătorul stabilesc irevocabil și de comun acord faptul că
+      neplata facturii atrage penalități în cuantum de 0,5% pentru fiecare
+      zi de întârziere, penalități care se calculează de la data scadenței
+      până la data la care factura este integral achitată. Termen de plată
+      <span id="tPlata">0</span> zile, adică <span class="dataDoc3">21.12.2021.</span></span></td>
+  </tr>
+</tbody>
+
+</table>
+<div id="footer"></div>
+</div></div>
