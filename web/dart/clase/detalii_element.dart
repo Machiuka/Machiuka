@@ -14,6 +14,7 @@ class DetaliiElement {
     InputElement _denumire = querySelector("#denumire") as InputElement;
     InputElement _cod = querySelector("#cod") as InputElement;
     InputElement _unitMas = querySelector("#unitMas") as InputElement;
+    InputElement _pretMP = querySelector("#pretMP") as InputElement;
     InputElement _cantitate = querySelector("#cantitate") as InputElement;
     Element _textElem = querySelector("#titluElement") as Element;
     Element _btnAdaug = querySelector("#btnAdaug") as Element;
@@ -28,11 +29,16 @@ class DetaliiElement {
 
     _btnAdaug.onClick.listen((e) {
       Global.cantitate = _cantitate.value.toString();
+      Global.pret = _pretMP.value.toString();
       UBFDocument.articol['cantitate'] = Global.cantitate;
       UBFDocument.articol['codElem'] = Global.cod_doc;
       UBFDocument.articol['unitMas'] = Global.um;
       UBFDocument.articol['denumire'] = Global.denumire;
-      UBFDocument.continutDoc = UBFDocument.continutDoc + jsonEncode(UBFDocument.articol) + ',';
+      UBFDocument.articol['pret'] = Global.pret;
+      UBFDocument.articol['valoare'] =
+          double.parse(Global.pret) * int.parse(Global.cantitate);
+      UBFDocument.continutDoc =
+          UBFDocument.continutDoc + jsonEncode(UBFDocument.articol) + ',';
 
       //Global.continut = Global.continut + Global.cod_doc + '|' + Global.cantitate + '^';
 

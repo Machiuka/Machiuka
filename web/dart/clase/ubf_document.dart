@@ -6,12 +6,14 @@ class UBFDocument {
   static String? nrDoc;
   static String emitentDoc = '';
   static String destinatarDoc = '';
-  static String? tipDoc; //fi-factura intrare, fe - factura iesire, av - aviz expeditie, rt - reteta
+  static String?
+      tipDoc; //fi-factura intrare, fe - factura iesire, av - aviz expeditie, rt - reteta
   static String dateEmitentDoc = ''; //si aici la fel
   static String? denumire;
   static String dateDestinatarDoc = ''; //si aici la fel
   static String? obsDoc;
   static String operator = Global.operator; //doar in test am nevoie de el
+  static double? costMP; //costul materiilor prime
   static double? pretVanzare;
   static double? pretVanzare1; //Pitesti
   static double? pretVanzare2; //Lux
@@ -37,7 +39,8 @@ class UBFDocument {
     'valoare': 0,
   };
 
-  static String continutDoc = ''; //Aici preia articolele in format JSON pt import ulterior in continutura din tbl_facturi
+  static String continutDoc =
+      ''; //Aici preia articolele in format JSON pt import ulterior in continutura din tbl_facturi
   Map toJson() => {
         'idx': idx,
         'dataDoc': dataDoc,
@@ -53,6 +56,7 @@ class UBFDocument {
         'dateEmitentDoc': dateEmitentDoc,
         'dateDestinatarDoc': dateDestinatarDoc,
         'obs': obsDoc,
+        'costMP': costMP,
         'incasata': incasata,
         'descriere': descriere,
         'pretVanzare': pretVanzare,

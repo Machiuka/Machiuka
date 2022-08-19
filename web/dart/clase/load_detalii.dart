@@ -21,7 +21,8 @@ class LoadDetalii {
     FormElement _formDetalii = querySelector("#formDetalii") as FormElement;
     _formCautare.replaceWith(_formDetalii);
 
-    late final UListElement lista = querySelector('#listaDetalii') as UListElement;
+    late final UListElement lista =
+        querySelector('#listaDetalii') as UListElement;
     FormElement formDetalii = querySelector("#formDetalii") as FormElement;
     Loader loader = Loader();
     loader
@@ -50,11 +51,14 @@ class LoadDetalii {
     });
   }
 
-  loadRaportare(String tabel, String numeServerPrimar, String dataInceput, String dataSfarsit, [String? partener, String? produs]) {
+  loadRaportare(String tabel, String numeServerPrimar, String dataInceput,
+      String dataSfarsit,
+      [String? partener, String? produs]) {
     //cauta pe serverul primar ceea ce primeste din meniul cautare si afiseaza detaliile primite de pe serverul secundar
     //de pe serverul primar primeste o lista clickabila si de pe cel secundar primeste un tabel cu detaliile elementului selectat din lista
     //caut este partenerul
-    late final UListElement lista = querySelector('#listaDetalii') as UListElement;
+    late final UListElement lista =
+        querySelector('#listaDetalii') as UListElement;
     FormElement formRaport = querySelector("#formRaport") as FormElement;
     Loader loader = Loader();
     String optiune = "";
@@ -75,8 +79,9 @@ class LoadDetalii {
             dataSfarsit: dataSfarsit,
             produs: produs)
         .then((rezultat) async {
-      //  window.alert(rezultat);
+      window.alert(rezultat);
       final _json = json.decode(rezultat);
+      //window.alert("Runtime= " + _json.runtimeType.toString());
 
       //       FormElement formDetalii =querySelector("#formDetalii") as FormElement;
 
@@ -92,13 +97,16 @@ class LoadDetalii {
       btnInapoi.onClick.listen((event) {
         formTabel.replaceWith(formRaport);
       });
-      dataInceput = _convertData(dataInceput); // Converteste din yyyy-mm-dd in dd.mm.yyyy
+      dataInceput =
+          _convertData(dataInceput); // Converteste din yyyy-mm-dd in dd.mm.yyyy
       dataSfarsit = _convertData(dataSfarsit);
 
       if (partener == "") {
-        titluTabel.innerHtml = "RAPORT LIVRARI ${dataInceput}  -  ${dataSfarsit}";
+        titluTabel.innerHtml =
+            "RAPORT LIVRARI ${dataInceput}  -  ${dataSfarsit}";
       } else {
-        titluTabel.innerHtml = "RAPORT LIVRARI $partener perioada ${dataInceput}  -  ${dataSfarsit}";
+        titluTabel.innerHtml =
+            "RAPORT LIVRARI $partener perioada ${dataInceput}  -  ${dataSfarsit}";
       }
     });
   }
@@ -120,10 +128,12 @@ class LoadDetalii {
     return dataCon;
   }
 
-  loadInterogare(String caut, String tabel, String numeServerPrimar, [String numeServerSecundar = '']) {
+  loadInterogare(String caut, String tabel, String numeServerPrimar,
+      [String numeServerSecundar = '']) {
     //cauta pe serverul primar ceea ce primeste din meniul cautare si afiseaza detaliile primite de pe serverul secundar
     //de pe serverul primar primeste o lista clickabila si de pe cel secundar primeste un tabel cu detaliile elementului selectat din lista
-    late final UListElement lista = querySelector('#listaDetalii') as UListElement;
+    late final UListElement lista =
+        querySelector('#listaDetalii') as UListElement;
     FormElement formDetalii = querySelector("#formDetalii") as FormElement;
     Loader loader = Loader();
     loader
@@ -145,7 +155,13 @@ class LoadDetalii {
           String den = _json[i]['denumire'];
 //Pe serverCautSterg reteta am adaugat optiunea r1 iul.2022
           //     loader.cautaPeServer(criteriu: crit, tabel: tabel, numeServer: numeServerPrimar, optiune: "r").then((value) async {
-          loader.cautaPeServer(criteriu: crit, tabel: tabel, numeServer: numeServerPrimar, optiune: "r1").then((value) async {
+          loader
+              .cautaPeServer(
+                  criteriu: crit,
+                  tabel: tabel,
+                  numeServer: numeServerPrimar,
+                  optiune: "r1")
+              .then((value) async {
             value = value.replaceAll("[", "");
             value = value.replaceAll("]", "");
             //    window.alert('Value reteta este $value');
@@ -179,7 +195,8 @@ class LoadDetalii {
 
   loadStergere(String caut, String tabel, String numeServer) {
     //cauta pe serverul si primeste o lista clickabila. Sterge apoi elementul selectat, dupa id
-    late final UListElement lista = querySelector('#listaDetalii') as UListElement;
+    late final UListElement lista =
+        querySelector('#listaDetalii') as UListElement;
     FormElement formDetalii = querySelector("#formDetalii") as FormElement;
     Loader loader = Loader();
     loader
@@ -197,11 +214,18 @@ class LoadDetalii {
         LIElement elem = LIElement();
         lista.children.add(elem..text = _json[i]['denumire']);
         elem.onClick.listen((e) {
-          bool confirmare = window.confirm("Elementul ${_json[i]['denumire']} va fi sters. Ok, pt confirmare, Cancel pt anulare");
+          bool confirmare = window.confirm(
+              "Elementul ${_json[i]['denumire']} va fi sters. Ok, pt confirmare, Cancel pt anulare");
           if (confirmare) {
             String crit = _json[i]['id'].toString();
             //  window.alert('Criteriul de stergere este $crit');
-            loader.cautaPeServer(criteriu: crit, tabel: tabel, numeServer: numeServer, optiune: "d").then((value) async {
+            loader
+                .cautaPeServer(
+                    criteriu: crit,
+                    tabel: tabel,
+                    numeServer: numeServer,
+                    optiune: "d")
+                .then((value) async {
               value = value.replaceAll("[", "");
               value = value.replaceAll("]", "");
 
@@ -213,7 +237,8 @@ class LoadDetalii {
               incarcFormular('html/form_tabel.html');
               await Future.delayed(const Duration(milliseconds: 50));
               Tabelare tabelul = Tabelare();
-              FormElement formTabel = querySelector("#formTabel") as FormElement;
+              FormElement formTabel =
+                  querySelector("#formTabel") as FormElement;
               Element titluTabel = querySelector("#titluTabel") as Element;
               Element btnInapoi = querySelector("#btnCCC") as Element;
               formDetalii.replaceWith(
@@ -236,10 +261,18 @@ class LoadDetalii {
     });
   }
 
-  loadIncarcareDoc(String tabel, String numeServer, String tipDoc, UBFDocument? docData) {
+  loadIncarcareDoc(
+      String tabel, String numeServer, String tipDoc, UBFDocument? docData) {
 //Incarca date pe server. Despre Useri sau Documente
     Loader loader = Loader();
-    loader.adaugaPeServer(numeServer: numeServer, opt: "c", tipDoc: tipDoc, tabel: tabel, docData: docData).then((rezultat) async {
+    loader
+        .adaugaPeServer(
+            numeServer: numeServer,
+            opt: "c",
+            tipDoc: tipDoc,
+            tabel: tabel,
+            docData: docData)
+        .then((rezultat) async {
       //window.alert(rezultat);
       try {
         rezultat = rezultat.replaceAll("\\", "");
@@ -250,7 +283,8 @@ class LoadDetalii {
         final _json = json.decode(rezultat);
         // RaspunsTabel.raspunsTabel(_json);
         if (_json['eroare'] == null) {
-          window.alert("Produsul " + _json['denumire'] + " a fost adaugat/modificat!");
+          window.alert(
+              "Produsul " + _json['denumire'] + " a fost adaugat/modificat!");
         } else {
           window.alert("Produsul/serviciul  exista!");
         }
@@ -261,12 +295,20 @@ class LoadDetalii {
     });
   }
 
-  loadIncarcareClient(String tabel, String numeServer, String crud, UBFClient? clientData) {
+  loadIncarcareClient(
+      String tabel, String numeServer, String crud, UBFClient? clientData) {
 //Incarca date pe server. Despre Useri sau Documente
     //window.alert(UBFClient.codElem.toString());
     //window.alert(UBFClient.denumire);
     Loader loader = Loader();
-    loader.adaugaPeServer(numeServer: numeServer, opt: crud, tipDoc: 'cl', tabel: tabel, clientData: clientData).then((rezultat) async {
+    loader
+        .adaugaPeServer(
+            numeServer: numeServer,
+            opt: crud,
+            tipDoc: 'cl',
+            tabel: tabel,
+            clientData: clientData)
+        .then((rezultat) async {
       //await Future.delayed(const Duration(milliseconds: 50));
       //    window.alert(rezultat);
       try {
@@ -275,7 +317,8 @@ class LoadDetalii {
         //window.alert(rezultat);
         final _json = json.decode(rezultat);
         if (crud == 'c') {
-          window.alert("Clientul " + _json['denumire'] + " a fost creat cu succes!");
+          window.alert(
+              "Clientul " + _json['denumire'] + " a fost creat cu succes!");
           window.location.reload();
         } else if (crud != 'd') {
           RaspunsTabel.raspunsTabel(_json);
@@ -289,10 +332,18 @@ class LoadDetalii {
     });
   }
 
-  loadIncarcareUser(String tabel, String tipDoc, String numeServer, UBFUser? docUser) {
+  loadIncarcareUser(
+      String tabel, String tipDoc, String numeServer, UBFUser? docUser) {
 //Incarca date pe server. Despre Useri sau Documente
     Loader loader = Loader();
-    loader.adaugaPeServer(numeServer: numeServer, opt: "c", tipDoc: tipDoc, tabel: tabel, userData: docUser).then((rezultat) {
+    loader
+        .adaugaPeServer(
+            numeServer: numeServer,
+            opt: "c",
+            tipDoc: tipDoc,
+            tabel: tabel,
+            userData: docUser)
+        .then((rezultat) {
       final _json = json.decode(rezultat);
     });
   }

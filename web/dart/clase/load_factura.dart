@@ -15,7 +15,8 @@ import '../forms/form_factura.dart';
 import 'aviz_fact .dart';
 
 class LoadFactura {
-  Future loadArticol(String tipDoc, String caut, String tabel, String numeServer) async {
+  Future loadArticol(
+      String tipDoc, String caut, String tabel, String numeServer) async {
     //cauta produse pt factura
 
     FormElement _formCautare = querySelector("#formCautare") as FormElement;
@@ -26,10 +27,14 @@ class LoadFactura {
     _divButoane.hidden = true;
     _formCautare.replaceWith(_formDetalii);
 
-    late final UListElement lista = querySelector('#listaDetalii') as UListElement;
+    late final UListElement lista =
+        querySelector('#listaDetalii') as UListElement;
 
     Loader kk = Loader();
-    kk.cautaPeServer(criteriu: caut, numeServer: numeServer, optiune: "r", tabel: tabel).then((rezultat) async {
+    kk
+        .cautaPeServer(
+            criteriu: caut, numeServer: numeServer, optiune: "r", tabel: tabel)
+        .then((rezultat) async {
       //  window.alert(rezultat);
       final _json = json.decode(rezultat);
       lista.children.clear();
@@ -50,6 +55,7 @@ class LoadFactura {
           UBFFactura.articol['codElem'] = _json[i]['cod_doc'];
           UBFFactura.articol['denumire'] = _json[i]['denumire'];
           UBFFactura.listaPret = UBFClient.listaPret;
+          //      window.alert('Lista pret este ' + UBFFactura.listaPret.toString());
           String pretS = _json[i]['pret_vanzare' + UBFFactura.listaPret];
           //     window.alert("Lista pret: " + UBFFactura.listaPret.toString() + " Pret :" + pretS);
           double pret = double.parse(pretS);
@@ -59,7 +65,8 @@ class LoadFactura {
           }
           UBFFactura.articol['pret'] = pret.round();
 
-          UBFFactura.articol['valabilitate'] = _json[i]['valabilitate']; //termenul de valabilitate e necesar la completarea Certif de garantie
+          UBFFactura.articol['valabilitate'] = _json[i][
+              'valabilitate']; //termenul de valabilitate e necesar la completarea Certif de garantie
 
           UBFFactura.articol['ctva'] = _json[i]['cota_tva'];
 
@@ -77,17 +84,20 @@ class LoadFactura {
   }
 
   //****************************** */
-  Future loadClient(String tipDoc, String caut, String tabel, String numeServer) async {
+  Future loadClient(
+      String tipDoc, String caut, String tabel, String numeServer) async {
     //Cauta clientul dupa criteriul de cautare si returneaza datele lui, spre a fi adaugate in factura
 
     // FormElement _formCautare = querySelector("#formCautare") as FormElement;
     // LoadDetalii.incarcFormular('html/form_detalii.html');
     //await Future.delayed(const Duration(milliseconds: 50));
     FormElement _formDetalii = querySelector("#formDetalii") as FormElement;
-    DivElement _divButoane = querySelector('.butoane') as DivElement; //nu am nevoie de butoane
+    DivElement _divButoane =
+        querySelector('.butoane') as DivElement; //nu am nevoie de butoane
     _divButoane.hidden = true;
 
-    late final UListElement lista = querySelector('#listaDetalii') as UListElement;
+    late final UListElement lista =
+        querySelector('#listaDetalii') as UListElement;
 
     Loader kk = Loader();
     kk
@@ -117,11 +127,13 @@ class LoadFactura {
             UBFClient.delegat = _json[i]['delegat'];
             UBFClient.analitic = _json[i]['analitic'];
             UBFClient.masina = _json[i]['masina'];
-            UBFClient.listaPret = _json[i]['lista_pret'];
-            UBFClient.adaos = _json[i]['adaos'] != null ? int.parse(_json[i]['adaos']) : 0;
+            UBFClient.listaPret = _json[i]['lista_pret'].toString();
+            UBFClient.adaos =
+                _json[i]['adaos'] != null ? int.parse(_json[i]['adaos']) : 0;
 
             UBFClient.discount = int.parse(_json[i]['discount']);
             UBFClient.tPlata = int.parse(_json[i]['t_plata']);
+
             //Am stabilit clientul acum cautam articolele din factura
             _formDetalii.remove();
 
@@ -133,7 +145,9 @@ class LoadFactura {
   }
   //---------------------------------
 
-  loadInterogare(String tipDoc, String caut, String tabel, String numeServerPrimar, [bool modificare = false]) async {
+  loadInterogare(
+      String tipDoc, String caut, String tabel, String numeServerPrimar,
+      [bool modificare = false]) async {
     //cauta pe serverul primar ceea ce primeste din meniul cautare
 
     //FormElement _formCautare = querySelector("#formCautare") as FormElement;
@@ -143,7 +157,8 @@ class LoadFactura {
     DivElement _divButoane = querySelector('.butoane') as DivElement;
     _divButoane.hidden = true;
 
-    late final UListElement lista = querySelector('#listaDetalii') as UListElement;
+    late final UListElement lista =
+        querySelector('#listaDetalii') as UListElement;
     Loader kk = Loader();
     kk
         .cautaPeServer(
@@ -169,10 +184,22 @@ class LoadFactura {
 
         String _lung = _json[i]['nr_nir'].toString();
         if (tipDoc == "nir" && _lung.length > 1) {
-          lista.children.add(elem..text = _json[i]['cod_doc'] + "/" + _json[i]['data_doc'] + " (" + _json[i]['date_partener']['denumire'] + ")");
+          lista.children.add(elem
+            ..text = _json[i]['cod_doc'] +
+                "/" +
+                _json[i]['data_doc'] +
+                " (" +
+                _json[i]['date_partener']['denumire'] +
+                ")");
         }
         if (tipDoc != "nir") {
-          lista.children.add(elem..text = _json[i]['cod_doc'] + "/" + _json[i]['data_doc'] + " (" + _json[i]['date_partener']['denumire'] + ")");
+          lista.children.add(elem
+            ..text = _json[i]['cod_doc'] +
+                "/" +
+                _json[i]['data_doc'] +
+                " (" +
+                _json[i]['date_partener']['denumire'] +
+                ")");
         }
 
         if (_json[i]['data_doc'] == "Nu s-au gasit rezultate") {
@@ -187,6 +214,7 @@ class LoadFactura {
         }
         elem.onClick.listen((e) async {
           _formDetalii.remove();
+          UBFClient.listaPret = _json[i]['date_partener']['listaPret'];
           if (tipDoc == "nir") {
             NIR.afisNir(tipDoc, _json[i]);
           } else if (tipDoc == "aviz2fact") {
@@ -227,13 +255,21 @@ class LoadFactura {
     });
   }
 
-  loadIncarcareFact(String tabel, String numeServer, String tipDoc, UBFFactura? factData, String optiune) {
+  loadIncarcareFact(String tabel, String numeServer, String tipDoc,
+      UBFFactura? factData, String optiune) {
 //Incarca date pe server. Despre Useri sau Documente
 //optiune este c -create sau u - update
     Loader kk = Loader();
 
     if (factData != null) {
-      kk.adaugaPeServer(numeServer: numeServer, opt: optiune, tipDoc: tipDoc, tabel: tabel, factData: factData).then((rezultat) async {
+      kk
+          .adaugaPeServer(
+              numeServer: numeServer,
+              opt: optiune,
+              tipDoc: tipDoc,
+              tabel: tabel,
+              factData: factData)
+          .then((rezultat) async {
         //await Future.delayed(const Duration(milliseconds: 50));
 
         try {
