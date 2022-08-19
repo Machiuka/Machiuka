@@ -45,7 +45,8 @@ class DetaliiFactura {
       double cantitate = double.parse(_cantitate.value!);
       double pret = double.parse(_pret.value!);
 
-      double tvaProdus = double.parse((pret * ctva / (100 + ctva) * Global.precision).toStringAsFixed(2));
+      double tvaProdus = double.parse(
+          (pret * ctva / (100 + ctva) * Global.precision).toStringAsFixed(2));
       tvaProdus = tvaProdus / Global.precision;
       double tva = tvaProdus * cantitate;
       double valCuTva = pret * cantitate;
@@ -59,7 +60,8 @@ class DetaliiFactura {
       UBFFactura.articol['tva'] = tva.toStringAsFixed(2);
       UBFFactura.articol['valoare'] = val.toStringAsFixed(2);
       //transform map in sir json
-      UBFFactura.articoleFactura = UBFFactura.articoleFactura + jsonEncode(UBFFactura.articol) + ',';
+      UBFFactura.articoleFactura =
+          UBFFactura.articoleFactura + jsonEncode(UBFFactura.articol) + ',';
       //window.alert(UBFFactura.articoleFactura);
       final DateFormat formatareData = DateFormat('yyyy-M-dd');
       UBFFactura.dataFact = formatareData.format(DateTime.now());
@@ -71,8 +73,10 @@ class DetaliiFactura {
 
       if (ctva == 19) {
         UBFFactura.tva19 = UBFFactura.tva19 + tva;
-      } else {
+      } else if (ctva == 9) {
         UBFFactura.tva9 = UBFFactura.tva9 + tva;
+      } else {
+        UBFFactura.tva5 = UBFFactura.tva5 + tva;
       }
       // window.alert('Articole factura = ${UBFFactura.articoleFactura}');
       _formElement.remove();

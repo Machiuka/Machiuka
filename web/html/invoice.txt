@@ -20,7 +20,7 @@
     <label class="textMediu" id="company_banca"></label><br>
     <label class="textMediu" id="company_trezorerie"></label></td>
         <td width="40%" cellpadding="10">
-          <div align="center"  ><h1 id="invoice-title-number">AVIZ&nbsp;DE&nbsp;EXPEDITIE</h1></div>
+          <div align="center"  ><h1 id="invoice-title-number">FACTURA &nbsp;FISCALA</h1></div>
           <div align="center"><h2>Nr : <label id="cod_doc"></label> &nbsp;&nbsp; din data de <span class="dataDoc1"></span></h2>
               </div>
             
@@ -31,8 +31,7 @@
           <label id="client_address"></label> <br>
           <label id="client_cui"></label><br>
           <label id="client_cif"></label><br>
-        <label id="client_tel"></label>  <br>
-    <label id="client_email"></label> </td> 
+   
       </tr>
       <tr>
         <td  colspan="2"><span id="textMic">Conform
@@ -52,10 +51,12 @@
       <th class="shortcolumn">Nr.<br>crt.</th>
       <th class="longcolumn">Denumire produs</th>
       <th class="shortcolumn">U.M.</th>
+      <th class="shortcolumn">Cota TVA<br>(%)</th>
       <th class="shortcolumn" >Canti-tate</th>
       <th class="numbercolumn">Pret Unitar<br>(lei)</th>
       <th class="numbercolumn">Valoare<br>(lei)</th>
-      </tr>
+      <th class="numbercolumn"  width= "50px">T.V.A.<br>(lei)</th>
+    </tr>
   </thead>
 <tbody id="tableBody">  
 
@@ -65,10 +66,22 @@
   <tbody>
     
     <tr>
-   <td></td> <td></td> <td></td>  <td style="font-size:12px;" align="right">TOTAL:</td>
+   <td></td> <td></td> <td></td>  <td style="font-size:12px;" align="right">TOTAL fara TVA:</td>
       <td style="font-size:12px;" align="left"><span id="totalFact"></span></td>
     </tr>
-        
+    <tr>
+     <td></td> <td></td> <td></td>   <td style="font-size:12px;" align="right">TVA(9.00%):</td>
+      <td style="font-size:12px;" align="left"><span id="totalTVA9"></span></td>
+    </tr>
+    <tr>
+      <td></td><td></td> <td></td>  <td style="font-size:12px;" align="right">TVA(19.00%):</td>
+      <td style="font-size:12px;" align="left"><span id="totalTVA19"></span></td>
+    </tr>
+    <tr>
+      <td></td><td></td> <td></td>  <td style="font-size:12px;" align="right"><b>TOTAL DE PLATA:</b></td>
+      <td style="font-size:12px;" align="left"><b><span id="totalGeneral"></span></b></td>
+    </tr>
+    
   </tbody>
 </table>
 </div>
@@ -77,14 +90,11 @@
     <tr>
       <td><br>
         <br>
-        <span class="textMic" text-align="left">Aviz valabil fără semnatură şi ştampilă cf. art. 319
+        <span class="textMic" text-align="left">Factura valabilă fără semnatură şi ştampilă cf. art. 319
           alin 29 din Legea nr. 227/2015 privind Codul fiscal.</span></td>
           <td><br>
             <br>
-            <span class="textMic" id="labo" text-align="left">Produsele fac parte din lotul nr.<span id="nrLot">81</span> si corespund SF1/2012. Orice reclamatie va fi insotita de nr.lotului.</span></td
-
-
-            
+            <span class="textMic" id="labo" text-align="left">Produsele fac parte din lotul nr.<span id="nrLot">81</span> si corespund SF1/2012. Orice reclamatie va fi insotita de nr.lotului.</span></td>
     </tr>
   </tbody>
 </table>
@@ -109,7 +119,7 @@
     </tr>
   </tbody>
 </table >
-<table class="footTable" hidden="false">
+<table class="footTable">
 <tbody>
   <tr>
     <td style="border-top:double medium #CCCCCC;font-size:9px;"><span id="textMic">Prezentul
@@ -124,23 +134,5 @@
 </tbody>
 
 </table>
-<div id="eFactura" hidden="true">
- 
-  <span id="totalGeneral"></span>
-  <span id="totalTVA9"></span>
-  <span id="totalTVA5"></span>
-  <span id="totalTVA19"></span>
- <table>
-  <tr class="tva5">
-    <td></td> <td></td> <td></td>   <td style="font-size:12px;" align="right">TVA(5.00%):</td>
-     <td style="font-size:12px;" align="left"><span id="totalTVA5"></span></td>
-   </tr>
-  <tr class="tva9">
-   <td></td> <td></td> <td></td>   <td style="font-size:12px;" align="right">TVA(9.00%):</td>
-    <td style="font-size:12px;" align="left"><span id="totalTVA9"></span></td>
-  </tr>
- </table>
-  
-  </div>
 <div id="footer"></div>
 </div></div>

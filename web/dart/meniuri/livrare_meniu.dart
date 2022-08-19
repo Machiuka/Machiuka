@@ -16,7 +16,6 @@ class LivrareMeniu {
     Element _btnAviz2Fact = querySelector('#btnAviz2Fact') as Element;
     Element _btnNir = querySelector('#btnNir') as Element;
     Element _btnRaport = querySelector('#btnRaport') as Element;
-    Element _btnBack = querySelector('#btnBack') as Element;
     Element _divLivrariNav = querySelector('#livrare_nav') as Element;
 
     _btnFacturi.onClick.listen((e) {
@@ -42,13 +41,6 @@ class LivrareMeniu {
       intern = window.confirm("Raport livrari catre clienti? Ok, pt confirmare / Cancel pt livrari catre gestiuni");
 
       FormularRaportare.formular(intern);
-    });
-
-    _btnBack.onClick.listen((e) {
-      _divLivrariNav.remove();
-
-      window.location.reload(); //echivalent cu refresh pagina
-      LoadDetalii.incarcFormular('html/top_nav.html');
     });
   }
 }

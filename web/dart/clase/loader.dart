@@ -27,7 +27,8 @@ class Loader {
     numeServer = numeServer + ".php";
     String query = "";
 
-    query = '?x={"tipDoc":"$nrAviz", "tabel":"$tabel", "optiune":"$optiune", "codDoc":"$codDoc", "dataDoc":"$dataDoc", "dataAviz":"$dataAviz"}';
+    query =
+        '?x={"tipDoc":"$nrAviz", "tabel":"$tabel", "optiune":"$optiune", "codDoc":"$codDoc", "dataDoc":"$dataDoc", "dataAviz":"$dataAviz"}';
 
     String path = Global.url + numeServer + query;
     //window.alert(path);
@@ -112,10 +113,19 @@ class Loader {
     } else if (tipDoc == 'fe' || tipDoc == 'av') {
       _obj = null;
       //_obj = {"tabel": tabel, "optiune": opt, "factData": factData!.toJson()};
-      _obj = {"tipDoc": tipDoc, "tabel": tabel, "optiune": opt, "factData": factData!.toJson()};
+      _obj = {
+        "tipDoc": tipDoc,
+        "tabel": tabel,
+        "optiune": opt,
+        "factData": factData!.toJson()
+      };
     } else if (tipDoc == 'cl') {
       _obj = null;
-      _obj = {"tabel": tabel, "optiune": opt, "clientData": clientData!.toJson()};
+      _obj = {
+        "tabel": tabel,
+        "optiune": opt,
+        "clientData": clientData!.toJson()
+      };
     }
 
     String _js = jsonEncode(_obj);

@@ -27,7 +27,8 @@ class InvoiceBody {
       String formular = 'html/invoice.html';
       bool cuPret = true;
       if (tipDoc == 'av') {
-        cuPret = window.confirm("Doriti afisare preturi? Ok, pt confirmare, Cancel pt afisare fara preturi");
+        cuPret = window.confirm(
+            "Doriti afisare preturi? Ok, pt confirmare, Cancel pt afisare fara preturi");
         formular = 'html/aviz.html';
       }
 
@@ -38,28 +39,37 @@ class InvoiceBody {
       DivElement divFactura = querySelector('#divFactura') as DivElement;
       LabelElement webpage = querySelector('#webpage') as LabelElement;
       LabelElement companyName = querySelector('#company_name') as LabelElement;
-      LabelElement companyAddress = querySelector('#company_address') as LabelElement;
+      LabelElement companyAddress =
+          querySelector('#company_address') as LabelElement;
       LabelElement companycif = querySelector('#company_cif') as LabelElement;
       LabelElement companycui = querySelector('#company_cui') as LabelElement;
       LabelElement companytel = querySelector('#company_tel') as LabelElement;
-      LabelElement companyemail = querySelector('#company_email') as LabelElement;
-      LabelElement companybanca = querySelector('#company_banca') as LabelElement;
-      LabelElement companytrezorerie = querySelector('#company_trezorerie') as LabelElement;
+      LabelElement companyemail =
+          querySelector('#company_email') as LabelElement;
+      LabelElement companybanca =
+          querySelector('#company_banca') as LabelElement;
+      LabelElement companytrezorerie =
+          querySelector('#company_trezorerie') as LabelElement;
       SpanElement dataDoc1 = querySelector('.dataDoc1') as SpanElement;
       SpanElement dataDoc2 = querySelector('.dataDoc2') as SpanElement;
       SpanElement dataDoc3 = querySelector('.dataDoc3') as SpanElement;
       SpanElement totalGeneral = querySelector('#totalGeneral') as SpanElement;
+      SpanElement totalTVA5 = querySelector('#totalTVA5') as SpanElement;
       SpanElement totalTVA19 = querySelector('#totalTVA19') as SpanElement;
       SpanElement totalTVA9 = querySelector('#totalTVA9') as SpanElement;
       SpanElement totalFact = querySelector('#totalFact') as SpanElement;
       SpanElement tPlata = querySelector('#tPlata') as SpanElement;
-      SpanElement nrLot = querySelector('#nrLot') as SpanElement; //Nr lotului din care fac parte produsele
+      SpanElement nrLot = querySelector('#nrLot')
+          as SpanElement; //Nr lotului din care fac parte produsele
+      TableRowElement rtva5 = querySelector('.tva5') as TableRowElement;
+      TableRowElement rtva9 = querySelector('.tva9') as TableRowElement;
 
       LabelElement nrFact = querySelector('#cod_doc') as LabelElement;
 
 //Zona Client
       LabelElement clientName = querySelector('#client_name') as LabelElement;
-      LabelElement clientAddress = querySelector('#client_address') as LabelElement;
+      LabelElement clientAddress =
+          querySelector('#client_address') as LabelElement;
       LabelElement clientcif = querySelector('#client_cif') as LabelElement;
       LabelElement clientcui = querySelector('#client_cui') as LabelElement;
       SpanElement delegat = querySelector('#delegat') as SpanElement;
@@ -109,8 +119,11 @@ class InvoiceBody {
 
       if (tipDoc == 'fe') {
         totalGeneral.innerHtml = _json['total_doc'];
+        totalTVA5.innerHtml = _json['tva_5'];
         totalTVA9.innerHtml = _json['tva_9'];
         totalTVA19.innerHtml = _json['tva_19'];
+        rtva5.hidden = _json['tva_5'] != null ? false : true;
+        rtva9.hidden = _json['tva_9'] != null ? false : true;
       }
 
       valDiscount = double.parse(_json['val_discount']);
@@ -129,7 +142,8 @@ class InvoiceBody {
 
       //Zona tabel factura
       //Map<String, dynamic> articoleFact = _json['continut'];
-      TableSectionElement tabel = querySelector('#tableBody') as TableSectionElement;
+      TableSectionElement tabel =
+          querySelector('#tableBody') as TableSectionElement;
       TableRowElement row = TableRowElement();
       TableCellElement cell = TableCellElement();
 
@@ -156,10 +170,14 @@ class InvoiceBody {
         styleSheet.insertRule(rule, 0);
         k = k + 1;
         cell = row.insertCell(k);
-        articol['valabilitate'] = articol['valabilitate'] != null ? articol['valabilitate'] : "0";
+        articol['valabilitate'] =
+            articol['valabilitate'] != null ? articol['valabilitate'] : "0";
         int _valab = int.parse(articol['valabilitate']);
         cell.text = _valab > 0
-            ? articol['denumire'] + " (termen valabilitate:" + articol['valabilitate'] + " zile)"
+            ? articol['denumire'] +
+                " (termen valabilitate:" +
+                articol['valabilitate'] +
+                " zile)"
             : articol['denumire']; // Aici introduc termen de valabilitate
 
         cell.id = 'denArt';
@@ -182,11 +200,13 @@ class InvoiceBody {
         }
         k = k + 1;
         cell = row.insertCell(k);
-        InputElement art = InputElement(); // daca nu este definit aici apare doar o data
+        InputElement art =
+            InputElement(); // daca nu este definit aici apare doar o data
         art.id = 'uncant$i';
         art.className = 'cantit';
         art.value = articol['cantitate'];
-        rule = '.cantit {text-align:center; border:none; type:number;  width: 50%;}';
+        rule =
+            '.cantit {text-align:center; border:none; type:number;  width: 50%;}';
         styleSheet.insertRule(rule, 0);
         cell.children.add(art);
 
@@ -277,7 +297,8 @@ class InvoiceBody {
         UBFFactura.achitata = termenPlata > 0 ? 0 : 1;
         UBFFactura.dateCumparator = _json['date_partener'];
         UBFFactura.nrFact = int.parse(_json['cod_doc']);
-        UBFFactura.adaos = _json['adaos'] != null ? int.parse(_json['adaos']) : 0;
+        UBFFactura.adaos =
+            _json['adaos'] != null ? int.parse(_json['adaos']) : 0;
         UBFFactura.dataFact = _json['data_doc'];
         UBFFactura.nrNir == _json['nr_NIR'];
         Global.operator = local.cauta('utilizator')!;
@@ -291,7 +312,8 @@ class InvoiceBody {
     }
   }
 
-  static void _modificare(List<dynamic> articoleF, List cant, String tipD, int discount) {
+  static void _modificare(
+      List<dynamic> articoleF, List cant, String tipD, int discount) {
     UBFFactura.articoleFactura = "";
     Map<String, dynamic> _articol;
     double pret = 0;
@@ -310,8 +332,10 @@ class InvoiceBody {
     double valCuTva = 0;
     double tva19 = 0;
     double tva9 = 0;
+    double tva5 = 0;
     double totalTva19 = 0;
     double totalTva9 = 0;
+    double totalTva5 = 0;
     int ctva = 0;
 
     int _nr_art = articoleF.length;
@@ -325,13 +349,16 @@ class InvoiceBody {
         pret = double.parse(_articol['pret']);
         //  window.alert('Pret produs=' + pret.toString());
         if (tipD == 'fe') {
-          tvaProdus = double.parse((pret * ctva / 100 * Global.precision).toStringAsFixed(2));
+          tvaProdus = double.parse(
+              (pret * ctva / 100 * Global.precision).toStringAsFixed(2));
 
           valFaraTva = pret * cant[i];
           tva = tvaProdus * cant[i] / Global.precision;
           valCuTva = valFaraTva + tva;
         } else {
-          tvaProdus = double.parse((pret * ctva / (100 + ctva) * Global.precision).toStringAsFixed(2));
+          tvaProdus = double.parse(
+              (pret * ctva / (100 + ctva) * Global.precision)
+                  .toStringAsFixed(2));
 
           valCuTva = pret * cant[i];
           tva = tvaProdus * cant[i] / Global.precision;
@@ -357,14 +384,17 @@ class InvoiceBody {
         } else {
           UBFFactura.articol['valoare'] = valCuTva.toStringAsFixed(2);
         }
-        UBFFactura.articoleFactura = UBFFactura.articoleFactura + jsonEncode(UBFFactura.articol) + ',';
+        UBFFactura.articoleFactura =
+            UBFFactura.articoleFactura + jsonEncode(UBFFactura.articol) + ',';
 
 //Calculeaza totaluri
 
         if (ctva == 19) {
           tva19 = tva;
-        } else {
+        } else if (ctva == 9) {
           tva9 = tva;
+        } else {
+          tva5 = tva;
         }
 
         totalFaraTva = totalFaraTva + valFaraTva;
@@ -372,6 +402,7 @@ class InvoiceBody {
         totalCuTva = totalCuTva + valCuTva;
         totalTva19 = totalTva19 + tva19;
         totalTva9 = totalTva9 + tva9;
+        totalTva5 = totalTva5 + tva5;
         //    window.alert("valFaraTva= " + totalFaraTva.toString() + " valcu TVA = " + totalCuTva.toString());
 
         // window.alert(totalTva.toString() + ' tva9=' + totalTva9.toString());
@@ -382,13 +413,15 @@ class InvoiceBody {
     UBFFactura.totalFactFaraTva = totalFaraTva;
 
     UBFFactura.tva19 = totalTva19;
+    UBFFactura.tva5 = totalTva5;
     UBFFactura.tva9 = totalTva9;
-    UBFFactura.tva = totalTva9 + totalTva19;
+    UBFFactura.tva = totalTva5 + totalTva9 + totalTva19;
     UBFFactura.totalFactura = totalCuTva;
     UBFFactura.discount = discount;
     //Rotunjeste totalul facturii, adica scapa de zecimalele in plus
 
-    double _zecimale = (UBFFactura.totalFactura - UBFFactura.totalFactura.round()).abs();
+    double _zecimale =
+        (UBFFactura.totalFactura - UBFFactura.totalFactura.round()).abs();
 
     if (_zecimale < Global.zecimale) {
       UBFFactura.totalFactura = UBFFactura.totalFactura - _zecimale;

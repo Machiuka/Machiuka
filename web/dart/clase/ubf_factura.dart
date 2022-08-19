@@ -11,6 +11,7 @@ class UBFFactura {
   static String? dataFact;
   static double totalFactFaraTva = 0.00;
   static double totalFactura = 0.00;
+  static double tva5 = 0.00;
   static double tva9 = 0.00;
   static double tva19 = 0.00;
   static double tva = 0.00;
@@ -24,7 +25,8 @@ class UBFFactura {
   static String activitate = '';
   static String listaPret = '';
   static String nrNir = '';
-  static int facturabil = 0; //0 - nefacturabil, 1- nefacturat, 2-facturat. Avize catre terti
+  static int facturabil =
+      0; //0 - nefacturabil, 1- nefacturat, 2-facturat. Avize catre terti
 //Sectiunea Vanzator
 
   Map<String, String> dateVanzator() {
@@ -54,7 +56,8 @@ class UBFFactura {
   };
 
   //static Map<String, dynamic> articoleFactura = {"produs": produs, "cantitate": cantitate, "pret": pret, "ctva": ctva};
-  static String articoleFactura = ''; //Aici preia articolele in format JSON pt import ulterior in continutura din tbl_facturi
+  static String articoleFactura =
+      ''; //Aici preia articolele in format JSON pt import ulterior in continutura din tbl_facturi
 
   Map<String, dynamic> toJson() => {
         'idx': idx,
@@ -65,6 +68,7 @@ class UBFFactura {
         'total_doc': totalFactura,
         'tva19': tva19,
         'tva9': tva9,
+        'tva5': tva5,
         'total_tva': tva,
         'date_firma': dateVanzator(),
         'adaos': adaos,

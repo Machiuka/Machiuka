@@ -30,7 +30,7 @@ class LoadFactura {
 
     Loader kk = Loader();
     kk.cautaPeServer(criteriu: caut, numeServer: numeServer, optiune: "r", tabel: tabel).then((rezultat) async {
-      //   window.alert(rezultat);
+      //  window.alert(rezultat);
       final _json = json.decode(rezultat);
       lista.children.clear();
       for (int i = 0; i < _json.length; i++) {
@@ -51,6 +51,7 @@ class LoadFactura {
           UBFFactura.articol['denumire'] = _json[i]['denumire'];
           UBFFactura.listaPret = UBFClient.listaPret;
           String pretS = _json[i]['pret_vanzare' + UBFFactura.listaPret];
+          //     window.alert("Lista pret: " + UBFFactura.listaPret.toString() + " Pret :" + pretS);
           double pret = double.parse(pretS);
 
           if (UBFFactura.adaos > 0) {
